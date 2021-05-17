@@ -1,7 +1,7 @@
 var ctx = document.getElementById('lineChart');
 var addNum;
 var addLabel = "edi wow";
-var track_handler;
+var track_count;
 
 var data = new Chart(ctx, {
   type: 'line',
@@ -13,7 +13,7 @@ var data = new Chart(ctx, {
        fill: false,
        lineTension: 0.1,
        backgroundColor: "rgba(75, 192, 192, 0.4)",
-       borderColor: "rgba(255, 192, 192, 1)",
+       borderColor: "rgba(88,166,255, 1)",
        borderCapStyle: 'butt',
        borderDash: [],
        borderDashOffset: 0.0,
@@ -44,18 +44,21 @@ var data = new Chart(ctx, {
 });
 
 function addData(){
-  addNum = document.getElementById('addText').value;
-  data.data.labels.push("April");
-  data.data.datasets.forEach((dataset) => {
-      dataset.data.push(addNum);
-  });
+  removeData();
+  var tracksInputField = document.getElementsByName('track-input');
+  for (let i = 0; i <= track_count; i++){
+    data.data.labels.push(tracksInputField[i].value);
+    data.data.datasets.forEach((dataset) => {
+        dataset.data.push(tracksInputField[i].value);
+    });
+  }
   data.update();
 }
 
 function removeData() {
-  data.data.labels.pop();
+  data.data.labels.length = 0;
   data.data.datasets.forEach((dataset) => {
-      dataset.data.pop();
+      dataset.data.length = 0;
   });
   data.update();
 }
@@ -116,22 +119,22 @@ function check(opts){
 }
 
 function track_controller(track_handler){
+  track_count = track_handler.value;
   var textFields = document.getElementsByName('track-input');
   if (track_handler.value == 5){
-    textFields[5].style.display = "none";
     textFields[6].style.display = "none";
+    textFields[7].style.display = "none";
   } else if (track_handler.value == 6){
-    textFields[5].style.display = "inline";
-    textFields[6].style.display = "none";
+    textFields[6].style.display = "inline";
+    textFields[7].style.display = "none";
   } else {
-    textFields[5].style.display = "inline";
+    textFields[7].style.display = "inline";
     textFields[6].style.display = "inline";
   }
 }
 
 function start_body(){
-  track_handler = 0;
   var textFields = document.getElementsByName('track-input');
-  textFields[5].style.display = "none";
   textFields[6].style.display = "none";
+  textFields[7].style.display = "none";
 }
