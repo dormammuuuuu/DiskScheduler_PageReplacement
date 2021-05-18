@@ -2,6 +2,7 @@ var ctx = document.getElementById('lineChart');
 var addNum;
 var addLabel = "edi wow";
 var track_count;
+var resetButton, addButton;
 
 var data = new Chart(ctx, {
   type: 'line',
@@ -80,6 +81,8 @@ function check(opts){
   var numTracksCheck = document.getElementsByName('tracks');
   var directionCheck = document.getElementsByName('direction');
   var tracksInputField = document.getElementsByName('track-input');
+  addButton.disabled = false;
+  resetButton.disabled = false;
 
   if(numTracksCheck[0].disabled == true){
     numTracksCheck[0].checked = true;
@@ -135,6 +138,10 @@ function track_controller(track_handler){
 }
 
 function start_body(){
+  resetButton = document.getElementById('resetButton');
+  addButton = document.getElementById('addButton');
+  addButton.disabled = true;
+  resetButton.disabled = true;
   var textFields = document.getElementsByName('track-input');
   textFields[6].style.display = "none";
   textFields[7].style.display = "none";
