@@ -34,7 +34,7 @@ var data = new Chart(ctx, {
         suggestedMin: 0,
         suggestedMax: 199,
         ticks: {
-          count: 5,
+          count: 2,
           stepSize: 1,
           maxTicksLimit: 200
         }
@@ -73,6 +73,7 @@ function resetData(){
       dataset.data.length = 0;
   });
   data.update();
+  $('#exampleModal').modal('hide')
 }
 
 function check(opts){
