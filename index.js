@@ -116,10 +116,11 @@ function addData(){
       })
       lowest = 0;
     }
-    trackValues = trackValues.filter(function(item) {
+    alert(headValue);
+    sstfSet = sstfSet.filter(function(item) {
       return item != headValue;
     })
-    trackValues.unshift(headValue)
+    sstfSet.unshift(headValue)
     alert(sstfSet);
     sstfSet.reverse();
     while (sstfSet.length != 0){
