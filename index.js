@@ -89,16 +89,13 @@ function addData(){
     }
     trackValues.unshift(headValue);
   } else {
+    
     headValue = trackValues.shift();
     trackValues.sort((a, b) => a - b); // For descending sort
     trackValues.unshift(headValue);
     let sstfSet = [];
-    let previous = headValue;
-    let previousIndex;
     let lowest = 0;
     let temp;
-    let i = 0;
-    let index;
 
     while (trackValues.length != 0){
       for (let j = 0; j < trackValues.length; j++){
@@ -116,12 +113,10 @@ function addData(){
       })
       lowest = 0;
     }
-    alert(headValue);
     sstfSet = sstfSet.filter(function(item) {
       return item != headValue;
     })
     sstfSet.unshift(headValue)
-    alert(sstfSet);
     sstfSet.reverse();
     while (sstfSet.length != 0){
       trackValues.push(sstfSet.pop());
