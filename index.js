@@ -3,6 +3,9 @@ var addNum;
 var addLabel = "edi wow";
 var track_count;
 var resetButton, addButton;
+var tracksInputField = [];
+var direction;
+var selectedOpts;
 
 var data = new Chart(ctx, {
   type: 'line',
@@ -45,12 +48,92 @@ var data = new Chart(ctx, {
 });
 
 function addData(){
+  let tracksInputField = document.getElementsByName('track-input');
+  let trackValues = [];
+  let headValue;
   removeData();
-  var tracksInputField = document.getElementsByName('track-input');
+
   for (let i = 0; i <= track_count; i++){
-    data.data.labels.push(tracksInputField[i].value);
+    trackValues.push(parseInt(tracksInputField[i].value));
+  }
+
+  if(selectedOpts == 'look'){
+    headValue = trackValues.shift();
+    trackValues.sort((a, b) => b - a); // For descending sort
+    var lowerThanHead = [];
+    var higherThanHead = [];
+    for (let i = 0; i < trackValues.length; i++){
+      if (trackValues[i] < headValue)
+        lowerThanHead.push(trackValues[i]);
+      else
+        higherThanHead.push(trackValues[i]);
+
+      lowerThanHead.sort((a, b) => a - b); // For ascending sort
+      higherThanHead.sort((a, b) => b - a); // For descending sort
+    }
+    trackValues.length = 0;
+    if (direction == 't_low'){
+      while (lowerThanHead.length != 0){
+        trackValues.push(lowerThanHead.pop());
+      }
+      while (higherThanHead.length != 0){
+        trackValues.push(higherThanHead.pop());
+      }
+    } else if (direction == 't_high') {
+      while (higherThanHead.length != 0){
+        trackValues.push(higherThanHead.pop());
+      }
+      while (lowerThanHead.length != 0){
+        trackValues.push(lowerThanHead.pop());
+      }
+    }
+    trackValues.unshift(headValue);
+  } else {
+    headValue = trackValues.shift();
+    trackValues.sort((a, b) => a - b); // For descending sort
+    trackValues.unshift(headValue);
+    let sstfSet = [];
+    let previous = headValue;
+    let previousIndex;
+    let lowest = 0;
+    let temp;
+    let i = 0;
+    let index;
+
+    while (trackValues.length != 0){
+      for (let j = 0; j < trackValues.length; j++){
+        temp = Math.abs(trackValues[0] - trackValues[j]);
+        if (lowest == 0 || lowest > temp){
+          index = j;
+          lowest = temp;
+          previous = trackValues[j];
+        }
+      }
+      trackValues = trackValues.filter(function(item) {
+        return item != headValue;
+      })
+      sstfSet.push(previous);
+      trackValues = trackValues.filter(function(item) {
+        return item != previous;
+      })
+      lowest = 0;
+    }
+    trackValues = trackValues.filter(function(item) {
+      return item != headValue;
+    })
+    trackValues.unshift(headValue)
+    alert(sstfSet);
+    sstfSet.reverse();
+    while (sstfSet.length != 0){
+      trackValues.push(sstfSet.pop());
+    }
+
+  }
+
+  for (let i = 0; i <= track_count; i++){
+    data.data.labels.push(trackValues[i]);
     data.data.datasets.forEach((dataset) => {
-        dataset.data.push(tracksInputField[i].value);
+        dataset.data.push(trackValues[i]);
     });
   }
   data.update();
@@ -77,7 +160,17 @@ function resetData(){
   $('#exampleModal').modal('hide')
 }
 
-function check(opts){
+function clearInput(tracksInputField){
+    tracksInputField.value = "";
+}
+
+function lengthInput(trackInputField){
+  if (trackInputField.value.length > trackInputField.maxLength)
+    trackInputField.value = trackInputField.value.slice(0, trackInputField.maxLength);
+}
+
+function numTracks(opts){
+  selectedOpts = opts.value;
   var numTracksCheck = document.getElementsByName('tracks');
   var directionCheck = document.getElementsByName('direction');
   var tracksInputField = document.getElementsByName('track-input');
@@ -88,53 +181,64 @@ function check(opts){
     numTracksCheck[0].checked = true;
   }
 
-  if(opts.value == 'sstf' || opts.value == 'look'){
-    for(var i=0; i < tracksInputField.length; i++){
+  if(selectedOpts == 'sstf' || selectedOpts == 'look'){
+    for(let i=0; i < tracksInputField.length; i++){
       tracksInputField[i].disabled = false;
     }
   }
 
-  if(opts.value =='sstf'){
-    for (i = 0; i < numTracksCheck.length; i++){
-      numTracksCheck[i].disabled = false;
-    }
-    for (i = 0; i < directionCheck.length; i++){
-      directionCheck[i].disabled = true;
-      directionCheck[i].checked = false;
-    }
-  } else if (opts.value == 'look'){
-    for (i = 0; i < numTracksCheck.length; i++){
-      numTracksCheck[i].disabled = false;
-    }
-    for (i = 0; i < directionCheck.length; i++){
-      directionCheck[i].disabled = false;
-    }
-    directionCheck[0].checked = true;
-  } else {
-    for (i = 0; i < numTracksCheck.length; i++){
-      numTracksCheck[i].disabled = true;
-      numTracksCheck[i].checked = false;
-    }
-    for (i = 0; i < directionCheck.length; i++){
-      directionCheck[i].disabled = true;
-      directionCheck[i].checked = false;
-    }
+  switch (selectedOpts){
+    case "sstf":
+      for (i = 0; i < numTracksCheck.length; i++){
+        numTracksCheck[i].disabled = false;
+      }
+      for (i = 0; i < directionCheck.length; i++){
+        directionCheck[i].disabled = true;
+        directionCheck[i].checked = false;
+      }
+      break;
+    case "look":
+      direction = 't_low';
+      for (i = 0; i < numTracksCheck.length; i++){
+        numTracksCheck[i].disabled = false;
+      }
+      for (i = 0; i < directionCheck.length; i++){
+        directionCheck[i].disabled = false;
+      }
+      directionCheck[0].checked = true;
+      break;
+    default:
+      for (i = 0; i < numTracksCheck.length; i++){
+        numTracksCheck[i].disabled = true;
+        numTracksCheck[i].checked = false;
+      }
+      for (i = 0; i < directionCheck.length; i++){
+        directionCheck[i].disabled = true;
+        directionCheck[i].checked = false;
+      }
   }
 }
 
 function track_controller(track_handler){
-  track_count = track_handler.value;
+  track_count = parseInt(track_handler.value);
   var textFields = document.getElementsByName('track-input');
-  if (track_handler.value == 5){
-    textFields[6].style.display = "none";
-    textFields[7].style.display = "none";
-  } else if (track_handler.value == 6){
-    textFields[6].style.display = "inline";
-    textFields[7].style.display = "none";
-  } else {
-    textFields[7].style.display = "inline";
-    textFields[6].style.display = "inline";
+  switch (track_count){
+    case 5:
+      textFields[6].style.display = "none";
+      textFields[7].style.display = "none";
+      break;
+    case 6:
+      textFields[6].style.display = "inline";
+      textFields[7].style.display = "none";
+      break;
+    default:
+      textFields[7].style.display = "inline";
+      textFields[6].style.display = "inline";
   }
+}
+
+function track_direction(track_handler){
+  direction = track_handler.value;
 }
 
 function start_body(){
@@ -143,6 +247,8 @@ function start_body(){
   addButton.disabled = true;
   resetButton.disabled = true;
   var textFields = document.getElementsByName('track-input');
+  track_count = 5;
+  direction = 't_low';
   textFields[6].style.display = "none";
   textFields[7].style.display = "none";
 }
