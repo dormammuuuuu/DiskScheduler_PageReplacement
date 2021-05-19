@@ -102,16 +102,14 @@ function addData(){
 
     while (trackValues.length != 0){
       for (let j = 0; j < trackValues.length; j++){
-        temp = Math.abs(trackValues[0] - trackValues[j]);
+        temp = Math.abs(trackValues[0] - trackValues[j+1]);
         if (lowest == 0 || lowest > temp){
           index = j;
           lowest = temp;
           previous = trackValues[j];
         }
       }
-      trackValues = trackValues.filter(function(item) {
-        return item != headValue;
-      })
+
       sstfSet.push(previous);
       trackValues = trackValues.filter(function(item) {
         return item != previous;
