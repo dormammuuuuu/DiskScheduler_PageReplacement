@@ -89,30 +89,33 @@ function addData(){
     }
     trackValues.unshift(headValue);
   } else {
-    
+
     headValue = trackValues.shift();
     trackValues.sort((a, b) => a - b); // For descending sort
     trackValues.unshift(headValue);
+    alert(trackValues);
+
     let sstfSet = [];
     let lowest = 0;
     let temp;
-
+    let previous;
+    let tempCompare = trackValues.shift();
     while (trackValues.length != 0){
       for (let j = 0; j < trackValues.length; j++){
-        temp = Math.abs(trackValues[0] - trackValues[j+1]);
+        temp = Math.abs(tempCompare - trackValues[j]);
         if (lowest == 0 || lowest > temp){
-          index = j;
           lowest = temp;
           previous = trackValues[j];
         }
       }
-
+      tempCompare = previous;
       sstfSet.push(previous);
       trackValues = trackValues.filter(function(item) {
         return item != previous;
       })
       lowest = 0;
     }
+
     sstfSet = sstfSet.filter(function(item) {
       return item != headValue;
     })
@@ -121,7 +124,6 @@ function addData(){
     while (sstfSet.length != 0){
       trackValues.push(sstfSet.pop());
     }
-
   }
 
   for (let i = 0; i <= track_count; i++){
