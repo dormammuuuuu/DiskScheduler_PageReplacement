@@ -60,3 +60,7 @@ input[type=number] {
 .form-btn-margin{
   margin-top: 2rem;
 }
+
+#seekTime{
+  text-align: center;
+}

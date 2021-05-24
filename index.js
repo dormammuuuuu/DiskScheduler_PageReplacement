@@ -22,6 +22,9 @@ var data = new Chart(ctx, {
        borderDash: [],
        borderDashOffset: 0.0,
        borderJoinStyle: 'miter',
+       pointStyle: 'triangle',
+       pointRotation: 60,
+       pointRadius: 5,
        pointBorderColor: "rgba(75,192,192,1)",
        pointBackgroundColor: "#fff",
        pointBorderWidth: 1,
@@ -38,19 +41,45 @@ var data = new Chart(ctx, {
         suggestedMin: 0,
         suggestedMax: 199,
         ticks: {
+          autoSkip: false,
           count: 2,
           stepSize: 1,
           maxTicksLimit: 200
+        }
+      },
+      y : {
+        suggestedMin: 0,
+        suggestedMax: 199
+
+      }
+    },
+    plugins: {
+      legend: {
+        title: {
+          display: true,
+          text: 'Disk Scheduler Chart',
         }
       }
     }
   }
 });
 
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};
+
+
 function addData(){
   let tracksInputField = document.getElementsByName('track-input');
   let trackValues = [];
   let headValue;
+  let seekTime = 0;
+  let lowest;
+  let highest;
   removeData();
 
   for (let i = 0; i <= track_count; i++){
@@ -71,6 +100,9 @@ function addData(){
       lowerThanHead.sort((a, b) => a - b); // For ascending sort
       higherThanHead.sort((a, b) => b - a); // For descending sort
     }
+    lowest = lowerThanHead.min();     //get the lowest number
+    highest = higherThanHead.max();   //get the highest number
+
     trackValues.length = 0;
     if (direction == 't_low'){
       while (lowerThanHead.length != 0){
@@ -88,12 +120,15 @@ function addData(){
       }
     }
     trackValues.unshift(headValue);
+    if (direction == 't_high')
+      seekTime = (highest-headValue)+(highest-lowest);
+    else
+      seekTime = Math.abs(lowest-headValue)+(highest-lowest);
   } else {
 
     headValue = trackValues.shift();
     trackValues.sort((a, b) => a - b); // For descending sort
     trackValues.unshift(headValue);
-    alert(trackValues);
 
     let sstfSet = [];
     let lowest = 0;
@@ -124,6 +159,10 @@ function addData(){
     while (sstfSet.length != 0){
       trackValues.push(sstfSet.pop());
     }
+
+    for (let i = 1; i < trackValues.length; i++){
+      seekTime += Math.abs(trackValues[i-1]-trackValues[i]);
+    }
   }
 
   for (let i = 0; i <= track_count; i++){
@@ -133,6 +172,7 @@ function addData(){
     });
   }
   data.update();
+  document.getElementById('seekTime').innerHTML = "Total Seek time = <strong>" + seekTime + "</strong>";
 }
 
 function removeData() {
