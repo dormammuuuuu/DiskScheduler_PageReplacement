@@ -13,6 +13,7 @@
       <p>Disk scheduling is done by operating systems to schedule I/O requests arriving for the disk. It is also known as I/O scheduling.</p>
     </div>
   </div>
+
   <section>
     <form id="disk-menu" onsubmit="addData(this)">
       <div class="form-group">
@@ -71,6 +72,33 @@
     <canvas id="lineChart"></canvas>
   </section>
 
+  <div aria-live="polite" aria-atomic="true" class="fixed-bottom d-flex justify-content-end p-3 align-items-center w-100">
+    <div class="toast align-items-center text-white bg-danger border-0 " role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex justify-content-around">
+        <div class="toast-body">
+          There is something wrong with your input</br>
+          Take note of the following:</br></br>
+          - Inputs <strong>can't be NULL</strong></br>
+          - Inputs <strong>can't be repeated</strong></br>
+          - Inputs <strong>can't be less than 0</strong></br>
+          - Inputs <strong>can't be greater than 200</strong>
+        </div>
+        <button type="button" class="btn-close btn-close-white margin-anjo" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <div aria-live="polite" aria-atomic="true" class="fixed-bottom d-flex justify-content-end p-3 align-items-center w-100">
+    <div class="toast align-items-center text-white bg-success border-0 " role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex justify-content-around">
+        <div class="toast-body">
+          Success!
+        </div>
+        <button type="button" class="btn-close btn-close-white margin-anjo" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -89,6 +117,9 @@
       </div>
     </div>
   </div>
+
+
+
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="chart.min.js"></script>
   <script>

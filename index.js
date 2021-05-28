@@ -6,6 +6,7 @@ var resetButton, addButton;
 var tracksInputField = [];
 var direction;
 var selectedOpts;
+var validation = true;
 
 var data = new Chart(ctx, {
   type: 'line',
@@ -46,13 +47,9 @@ var data = new Chart(ctx, {
           stepSize: 1,
           maxTicksLimit: 200
         }
-      },
-      y : {
-        suggestedMin: 0,
-        suggestedMax: 199
-
       }
     },
+    showAllTooltips: true,
     plugins: {
       legend: {
         title: {
@@ -63,6 +60,26 @@ var data = new Chart(ctx, {
     }
   }
 });
+
+var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+var toastList = toastElList.map(function (toastEl) {
+  return new bootstrap.Toast(toastEl, toastOption)
+})
+
+var toastOption = {
+  animation:  true,
+  delay: 2000
+}
+
+function see(){
+  for (let i = 0; i < toastList.length; i++){
+    toastList[i].hide();
+  }
+  if(validation == false)
+    toastList[0].show();
+  else
+    toastList[1].show();
+}
 
 Array.prototype.max = function() {
   return Math.max.apply(null, this);
@@ -80,99 +97,108 @@ function addData(){
   let seekTime = 0;
   let lowest;
   let highest;
+  validation = true;
   removeData();
 
   for (let i = 0; i <= track_count; i++){
+    if (tracksInputField[i].value == "" || tracksInputField[i].value > 200 || tracksInputField[i].value < 0){
+      validation = false;
+      see();
+      break;
+    }
     trackValues.push(parseInt(tracksInputField[i].value));
   }
 
-  if(selectedOpts == 'look'){
-    headValue = trackValues.shift();
-    trackValues.sort((a, b) => b - a); // For descending sort
-    var lowerThanHead = [];
-    var higherThanHead = [];
-    for (let i = 0; i < trackValues.length; i++){
-      if (trackValues[i] < headValue)
-        lowerThanHead.push(trackValues[i]);
-      else
-        higherThanHead.push(trackValues[i]);
+  if (validation != false){
+    if(selectedOpts == 'look'){
+      headValue = trackValues.shift();
+      trackValues.sort((a, b) => b - a); // For descending sort
+      var lowerThanHead = [];
+      var higherThanHead = [];
+      for (let i = 0; i < trackValues.length; i++){
+        if (trackValues[i] < headValue)
+          lowerThanHead.push(trackValues[i]);
+        else
+          higherThanHead.push(trackValues[i]);
 
-      lowerThanHead.sort((a, b) => a - b); // For ascending sort
-      higherThanHead.sort((a, b) => b - a); // For descending sort
-    }
-    lowest = lowerThanHead.min();     //get the lowest number
-    highest = higherThanHead.max();   //get the highest number
+        lowerThanHead.sort((a, b) => a - b); // For ascending sort
+        higherThanHead.sort((a, b) => b - a); // For descending sort
+      }
+      lowest = lowerThanHead.min();     //get the lowest number
+      highest = higherThanHead.max();   //get the highest number
 
-    trackValues.length = 0;
-    if (direction == 't_low'){
-      while (lowerThanHead.length != 0){
-        trackValues.push(lowerThanHead.pop());
-      }
-      while (higherThanHead.length != 0){
-        trackValues.push(higherThanHead.pop());
-      }
-    } else if (direction == 't_high') {
-      while (higherThanHead.length != 0){
-        trackValues.push(higherThanHead.pop());
-      }
-      while (lowerThanHead.length != 0){
-        trackValues.push(lowerThanHead.pop());
-      }
-    }
-    trackValues.unshift(headValue);
-    if (direction == 't_high')
-      seekTime = (highest-headValue)+(highest-lowest);
-    else
-      seekTime = Math.abs(lowest-headValue)+(highest-lowest);
-  } else {
-
-    headValue = trackValues.shift();
-    trackValues.sort((a, b) => a - b); // For descending sort
-    trackValues.unshift(headValue);
-
-    let sstfSet = [];
-    let lowest = 0;
-    let temp;
-    let previous;
-    let tempCompare = trackValues.shift();
-    while (trackValues.length != 0){
-      for (let j = 0; j < trackValues.length; j++){
-        temp = Math.abs(tempCompare - trackValues[j]);
-        if (lowest == 0 || lowest > temp){
-          lowest = temp;
-          previous = trackValues[j];
+      trackValues.length = 0;
+      if (direction == 't_low'){
+        while (lowerThanHead.length != 0){
+          trackValues.push(lowerThanHead.pop());
+        }
+        while (higherThanHead.length != 0){
+          trackValues.push(higherThanHead.pop());
+        }
+      } else if (direction == 't_high') {
+        while (higherThanHead.length != 0){
+          trackValues.push(higherThanHead.pop());
+        }
+        while (lowerThanHead.length != 0){
+          trackValues.push(lowerThanHead.pop());
         }
       }
-      tempCompare = previous;
-      sstfSet.push(previous);
-      trackValues = trackValues.filter(function(item) {
-        return item != previous;
+      trackValues.unshift(headValue);
+      if (direction == 't_high')
+        seekTime = (highest-headValue)+(highest-lowest);
+      else
+        seekTime = Math.abs(lowest-headValue)+(highest-lowest);
+    } else {
+
+      headValue = trackValues.shift();
+      trackValues.sort((a, b) => a - b); // For descending sort
+      trackValues.unshift(headValue);
+
+      let sstfSet = [];
+      let lowest = 0;
+      let temp;
+      let previous;
+      let tempCompare = trackValues.shift();
+      while (trackValues.length != 0){
+        for (let j = 0; j < trackValues.length; j++){
+          temp = Math.abs(tempCompare - trackValues[j]);
+          if (lowest == 0 || lowest > temp){
+            lowest = temp;
+            previous = trackValues[j];
+          }
+        }
+        tempCompare = previous;
+        sstfSet.push(previous);
+        trackValues = trackValues.filter(function(item) {
+          return item != previous;
+        })
+        lowest = 0;
+      }
+
+      sstfSet = sstfSet.filter(function(item) {
+        return item != headValue;
       })
-      lowest = 0;
+      sstfSet.unshift(headValue)
+      sstfSet.reverse();
+      while (sstfSet.length != 0){
+        trackValues.push(sstfSet.pop());
+      }
+
+      for (let i = 1; i < trackValues.length; i++){
+        seekTime += Math.abs(trackValues[i-1]-trackValues[i]);
+      }
     }
 
-    sstfSet = sstfSet.filter(function(item) {
-      return item != headValue;
-    })
-    sstfSet.unshift(headValue)
-    sstfSet.reverse();
-    while (sstfSet.length != 0){
-      trackValues.push(sstfSet.pop());
+    for (let i = 0; i <= track_count; i++){
+      data.data.labels.push(trackValues[i]);
+      data.data.datasets.forEach((dataset) => {
+          dataset.data.push(trackValues[i]);
+      });
     }
-
-    for (let i = 1; i < trackValues.length; i++){
-      seekTime += Math.abs(trackValues[i-1]-trackValues[i]);
-    }
+    data.update();
+    document.getElementById('seekTime').innerHTML = "Total Seek time = <strong>" + seekTime + "</strong>";
+    see();
   }
-
-  for (let i = 0; i <= track_count; i++){
-    data.data.labels.push(trackValues[i]);
-    data.data.datasets.forEach((dataset) => {
-        dataset.data.push(trackValues[i]);
-    });
-  }
-  data.update();
-  document.getElementById('seekTime').innerHTML = "Total Seek time = <strong>" + seekTime + "</strong>";
 }
 
 function removeData() {

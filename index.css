@@ -64,3 +64,11 @@ input[type=number] {
 #seekTime{
   text-align: center;
 }
+
+.margin-anjo{
+  margin: auto 10px;
+}
+
+.toast{
+  width: 360px!important;
+}
