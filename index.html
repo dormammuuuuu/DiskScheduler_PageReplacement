@@ -14,8 +14,8 @@
     </div>
   </div>
 
-  <section>
-    <form id="disk-menu" onsubmit="addData(this)">
+  <section class="container">
+    <form id="disk-menu" class="jumbotron" onsubmit="addData(this)">
       <div class="form-group">
         <label class="mr-sm-2" for="disk-algorithms">Disk Scheduling Algorithm</label>
         <select onchange="numTracks(this)" class="custom-select" id="disk-algorithms" required>
@@ -27,21 +27,21 @@
           <div>
             <label class="mr-sm-2 block-paragraph">Number of Tracks</label>
             <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="5" name="tracks" id="track_five" autocomplete="off">
-            <label class="btn btn-outline-primary" for="track_five">5</label>
+            <label class="btn btn-outline-success" for="track_five">5</label>
 
             <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="6" name="tracks" id="track_six" autocomplete="off">
-            <label class="btn btn-outline-primary" for="track_six">6</label>
+            <label class="btn btn-outline-success" for="track_six">6</label>
 
             <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="7" name="tracks" id="track_seven" autocomplete="off">
-            <label class="btn btn-outline-primary" for="track_seven">7</label>
+            <label class="btn btn-outline-success" for="track_seven">7</label>
           </div>
           <div>
             <label class="mr-sm-2 block-paragraph">Direction</label>
             <input type="radio" class="btn-check" onchange="track_direction(this)" disabled="disabled" name="direction" value="t_low" id="option1" autocomplete="off">
-            <label class="btn btn-outline-primary" for="option1">Towards 0</label>
+            <label class="btn btn-outline-success" for="option1">Towards 0</label>
 
             <input type="radio" class="btn-check" onchange="track_direction(this)" disabled="disabled" name="direction" value="t_high" id="option2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="option2">Towards 199</label>
+            <label class="btn btn-outline-success" for="option2">Towards 199</label>
           </div>
         </div>
 
@@ -90,7 +90,7 @@
 
   <div aria-live="polite" aria-atomic="true" class="fixed-bottom d-flex justify-content-end p-3 align-items-center w-100">
     <div class="toast align-items-center text-white bg-success border-0 " role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex justify-content-around">
+      <div class="d-flex justify-content-between">
         <div class="toast-body">
           Success!
         </div>

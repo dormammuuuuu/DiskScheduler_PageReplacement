@@ -18,11 +18,12 @@ var data = new Chart(ctx, {
        fill: false,
        lineTension: 0.1,
        backgroundColor: "rgba(75, 192, 192, 0.4)",
-       borderColor: "rgba(88,166,255, 1)",
+       borderColor: "#28a745",
        borderCapStyle: 'butt',
        borderDash: [],
        borderDashOffset: 0.0,
        borderJoinStyle: 'miter',
+       color: "#fff",
        pointStyle: 'triangle',
        pointRotation: 60,
        pointRadius: 5,
@@ -35,19 +36,39 @@ var data = new Chart(ctx, {
      }
   ]},
   options: {
+    drawBorder: true,
     indexAxis: 'y',
-    offset: true,
     scales: {
-      x : {
+      xAxes : {
+        color: "rgba(255,255,255,1)",
         suggestedMin: 0,
-        suggestedMax: 199,
+        suggestedMax: 200,
         ticks: {
           autoSkip: false,
           count: 2,
           stepSize: 1,
-          maxTicksLimit: 200
+          maxTicksLimit: 200,
+          color: 'white'
+        },
+        grid: {
+          borderColor: 'rgba(255,255,255,.3)',
+          color: 'rgba(255,255,255,.3)'
+        }
+      },
+      yAxes:{
+        suggestedMax: 200,
+        ticks: {
+          color: 'white'
+        },
+        grid: {
+          tickWidth: 2,
+          tickLength: 20,
+          tickColor: 'white',
+          color: 'rgba(255,255,255,.3)',
+          borderColor: 'rgba(255,255,255,.3)'
         }
       }
+
     },
     showAllTooltips: true,
     plugins: {
@@ -219,6 +240,7 @@ function resetData(){
       dataset.data.length = 0;
   });
   data.update();
+  document.getElementById('seekTime').innerHTML = "";
   $('#exampleModal').modal('hide')
 }
 
