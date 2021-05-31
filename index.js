@@ -8,38 +8,42 @@ var direction;
 var selectedOpts;
 var validation = true;
 
+Chart.register(ChartDataLabels);
+
 var data = new Chart(ctx, {
   type: 'line',
   data: {
     labels: [],
-    datasets: [
-     {
-       label: "",
-       fill: false,
-       lineTension: 0.1,
-       backgroundColor: "rgba(75, 192, 192, 0.4)",
-       borderColor: "#28a745",
-       borderCapStyle: 'butt',
-       borderDash: [],
-       borderDashOffset: 0.0,
-       borderJoinStyle: 'miter',
-       color: "#fff",
-       pointStyle: 'triangle',
-       pointRotation: 60,
-       pointRadius: 5,
-       pointBorderColor: "rgba(75,192,192,1)",
-       pointBackgroundColor: "#fff",
-       pointBorderWidth: 1,
-       pointHoverRadius: 5,
-       pointHitRadius: 10,
-       data: [],
-     }
-  ]},
+    datasets: [{
+      label: "",
+      fill: false,
+      lineTension: 0.1,
+      backgroundColor: "#28a745",
+      borderColor: "#28a745",
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      color: "#fff",
+      pointStyle: 'circle',
+      pointRotation: 60,
+      pointRadius: 2,
+      pointBorderColor: "rgba(75,192,192,1)",
+      pointBackgroundColor: "#fff",
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHitRadius: 10,
+      data: [],
+    }],
+  },
   options: {
+    tooltips: {
+      enabled: false
+    },
     drawBorder: true,
     indexAxis: 'y',
     scales: {
-      xAxes : {
+      xAxes: {
         color: "rgba(255,255,255,1)",
         suggestedMin: 0,
         suggestedMax: 200,
@@ -55,48 +59,52 @@ var data = new Chart(ctx, {
           color: 'rgba(255,255,255,.3)'
         }
       },
-      yAxes:{
+      yAxes: {
         suggestedMax: 200,
         ticks: {
-          color: 'white'
+          color: 'transparent'
         },
         grid: {
-          tickWidth: 2,
-          tickLength: 20,
-          tickColor: 'white',
+          borderColor: 'rgba(255,255,255,.3)',
           color: 'rgba(255,255,255,.3)',
-          borderColor: 'rgba(255,255,255,.3)'
+          tickColor: 'transparent',
         }
       }
-
     },
-    showAllTooltips: true,
     plugins: {
-      legend: {
-        title: {
-          display: true,
-          text: 'Disk Scheduler Chart',
-        }
+      datalabels: {
+        backgroundColor: function(context) {
+          return context.dataset.backgroundColor;
+        },
+        borderColor: 'white',
+        borderRadius: 25,
+        borderWidth: 1,
+        color: 'white',
+        font: {
+          weight: 'bold'
+        },
+        formatter: Math.round,
+        padding: 4
       }
-    }
+    },
   }
 });
 
 var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-var toastList = toastElList.map(function (toastEl) {
+var toastList = toastElList.map(function(toastEl) {
   return new bootstrap.Toast(toastEl, toastOption)
 })
 
 var toastOption = {
-  animation:  true,
+  animation: true,
   delay: 2000
 }
 
-function see(){
-  for (let i = 0; i < toastList.length; i++){
+function see() {
+  for (let i = 0; i < toastList.length; i++) {
     toastList[i].hide();
   }
-  if(validation == false)
+  if (validation == false)
     toastList[0].show();
   else
     toastList[1].show();
@@ -110,8 +118,11 @@ Array.prototype.min = function() {
   return Math.min.apply(null, this);
 };
 
+function checkIfArrayIsUnique(myArray) {
+  return myArray.length === new Set(myArray).size;
+}
 
-function addData(){
+function addData() {
   let tracksInputField = document.getElementsByName('track-input');
   let trackValues = [];
   let headValue;
@@ -121,8 +132,8 @@ function addData(){
   validation = true;
   removeData();
 
-  for (let i = 0; i <= track_count; i++){
-    if (tracksInputField[i].value == "" || tracksInputField[i].value > 200 || tracksInputField[i].value < 0){
+  for (let i = 0; i <= track_count; i++) {
+    if (tracksInputField[i].value == "" || tracksInputField[i].value > 200 || tracksInputField[i].value < 0) {
       validation = false;
       see();
       break;
@@ -130,13 +141,18 @@ function addData(){
     trackValues.push(parseInt(tracksInputField[i].value));
   }
 
-  if (validation != false){
-    if(selectedOpts == 'look'){
+  if(checkIfArrayIsUnique(trackValues) == false){
+    validation = false;
+    see();
+  }
+
+  if (validation != false) {
+    if (selectedOpts == 'look') {
       headValue = trackValues.shift();
       trackValues.sort((a, b) => b - a); // For descending sort
       var lowerThanHead = [];
       var higherThanHead = [];
-      for (let i = 0; i < trackValues.length; i++){
+      for (let i = 0; i < trackValues.length; i++) {
         if (trackValues[i] < headValue)
           lowerThanHead.push(trackValues[i]);
         else
@@ -145,30 +161,29 @@ function addData(){
         lowerThanHead.sort((a, b) => a - b); // For ascending sort
         higherThanHead.sort((a, b) => b - a); // For descending sort
       }
-      lowest = lowerThanHead.min();     //get the lowest number
-      highest = higherThanHead.max();   //get the highest number
+      lowest = lowerThanHead.min(); //get the lowest number
+      highest = higherThanHead.max(); //get the highest number
 
       trackValues.length = 0;
-      if (direction == 't_low'){
-        while (lowerThanHead.length != 0){
+      if (direction == 't_low') {
+        while (lowerThanHead.length != 0) {
           trackValues.push(lowerThanHead.pop());
         }
-        while (higherThanHead.length != 0){
+        while (higherThanHead.length != 0) {
           trackValues.push(higherThanHead.pop());
         }
       } else if (direction == 't_high') {
-        while (higherThanHead.length != 0){
+        while (higherThanHead.length != 0) {
           trackValues.push(higherThanHead.pop());
         }
-        while (lowerThanHead.length != 0){
+        while (lowerThanHead.length != 0) {
           trackValues.push(lowerThanHead.pop());
         }
       }
       trackValues.unshift(headValue);
-      if (direction == 't_high')
-        seekTime = (highest-headValue)+(highest-lowest);
-      else
-        seekTime = Math.abs(lowest-headValue)+(highest-lowest);
+      for (let i = 1; i < trackValues.length; i++) {
+        seekTime += Math.abs(trackValues[i - 1] - trackValues[i]);
+      }
     } else {
 
       headValue = trackValues.shift();
@@ -180,10 +195,10 @@ function addData(){
       let temp;
       let previous;
       let tempCompare = trackValues.shift();
-      while (trackValues.length != 0){
-        for (let j = 0; j < trackValues.length; j++){
+      while (trackValues.length != 0) {
+        for (let j = 0; j < trackValues.length; j++) {
           temp = Math.abs(tempCompare - trackValues[j]);
-          if (lowest == 0 || lowest > temp){
+          if (lowest == 0 || lowest > temp) {
             lowest = temp;
             previous = trackValues[j];
           }
@@ -201,19 +216,19 @@ function addData(){
       })
       sstfSet.unshift(headValue)
       sstfSet.reverse();
-      while (sstfSet.length != 0){
+      while (sstfSet.length != 0) {
         trackValues.push(sstfSet.pop());
       }
 
-      for (let i = 1; i < trackValues.length; i++){
-        seekTime += Math.abs(trackValues[i-1]-trackValues[i]);
+      for (let i = 1; i < trackValues.length; i++) {
+        seekTime += Math.abs(trackValues[i - 1] - trackValues[i]);
       }
     }
 
-    for (let i = 0; i <= track_count; i++){
+    for (let i = 0; i <= track_count; i++) {
       data.data.labels.push(trackValues[i]);
       data.data.datasets.forEach((dataset) => {
-          dataset.data.push(trackValues[i]);
+        dataset.data.push(trackValues[i]);
       });
     }
     data.update();
@@ -225,35 +240,35 @@ function addData(){
 function removeData() {
   data.data.labels.length = 0;
   data.data.datasets.forEach((dataset) => {
-      dataset.data.length = 0;
+    dataset.data.length = 0;
   });
   data.update();
 }
 
-function resetData(){
+function resetData() {
   var tracksInputField = document.getElementsByName('track-input');
-  for (let i = 0; i < tracksInputField.length; i++){
+  for (let i = 0; i < tracksInputField.length; i++) {
     tracksInputField[i].value = "";
   }
   data.data.labels.length = 0;
   data.data.datasets.forEach((dataset) => {
-      dataset.data.length = 0;
+    dataset.data.length = 0;
   });
   data.update();
   document.getElementById('seekTime').innerHTML = "";
   $('#exampleModal').modal('hide')
 }
 
-function clearInput(tracksInputField){
-    tracksInputField.value = "";
+function clearInput(tracksInputField) {
+  tracksInputField.value = "";
 }
 
-function lengthInput(trackInputField){
+function lengthInput(trackInputField) {
   if (trackInputField.value.length > trackInputField.maxLength)
     trackInputField.value = trackInputField.value.slice(0, trackInputField.maxLength);
 }
 
-function numTracks(opts){
+function numTracks(opts) {
   selectedOpts = opts.value;
   var numTracksCheck = document.getElementsByName('tracks');
   var directionCheck = document.getElementsByName('direction');
@@ -261,52 +276,52 @@ function numTracks(opts){
   addButton.disabled = false;
   resetButton.disabled = false;
 
-  if(numTracksCheck[0].disabled == true){
+  if (numTracksCheck[0].disabled == true) {
     numTracksCheck[0].checked = true;
   }
 
-  if(selectedOpts == 'sstf' || selectedOpts == 'look'){
-    for(let i=0; i < tracksInputField.length; i++){
+  if (selectedOpts == 'sstf' || selectedOpts == 'look') {
+    for (let i = 0; i < tracksInputField.length; i++) {
       tracksInputField[i].disabled = false;
     }
   }
 
-  switch (selectedOpts){
+  switch (selectedOpts) {
     case "sstf":
-      for (i = 0; i < numTracksCheck.length; i++){
+      for (i = 0; i < numTracksCheck.length; i++) {
         numTracksCheck[i].disabled = false;
       }
-      for (i = 0; i < directionCheck.length; i++){
+      for (i = 0; i < directionCheck.length; i++) {
         directionCheck[i].disabled = true;
         directionCheck[i].checked = false;
       }
       break;
     case "look":
       direction = 't_low';
-      for (i = 0; i < numTracksCheck.length; i++){
+      for (i = 0; i < numTracksCheck.length; i++) {
         numTracksCheck[i].disabled = false;
       }
-      for (i = 0; i < directionCheck.length; i++){
+      for (i = 0; i < directionCheck.length; i++) {
         directionCheck[i].disabled = false;
       }
       directionCheck[0].checked = true;
       break;
     default:
-      for (i = 0; i < numTracksCheck.length; i++){
+      for (i = 0; i < numTracksCheck.length; i++) {
         numTracksCheck[i].disabled = true;
         numTracksCheck[i].checked = false;
       }
-      for (i = 0; i < directionCheck.length; i++){
+      for (i = 0; i < directionCheck.length; i++) {
         directionCheck[i].disabled = true;
         directionCheck[i].checked = false;
       }
   }
 }
 
-function track_controller(track_handler){
+function track_controller(track_handler) {
   track_count = parseInt(track_handler.value);
   var textFields = document.getElementsByName('track-input');
-  switch (track_count){
+  switch (track_count) {
     case 5:
       textFields[6].style.display = "none";
       textFields[7].style.display = "none";
@@ -321,11 +336,11 @@ function track_controller(track_handler){
   }
 }
 
-function track_direction(track_handler){
+function track_direction(track_handler) {
   direction = track_handler.value;
 }
 
-function start_body(){
+function start_body() {
   resetButton = document.getElementById('resetButton');
   addButton = document.getElementById('addButton');
   addButton.disabled = true;
