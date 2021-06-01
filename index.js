@@ -27,18 +27,25 @@ var data = new Chart(ctx, {
       color: "#fff",
       pointStyle: 'circle',
       pointRotation: 60,
-      pointRadius: 2,
-      pointBorderColor: "rgba(75,192,192,1)",
-      pointBackgroundColor: "#fff",
+      pointRadius: 4,
+      pointBorderColor: "#28a745",
+      pointBackgroundColor: "#28a745",
       pointBorderWidth: 1,
       pointHoverRadius: 5,
       pointHitRadius: 10,
       data: [],
+      datalabels: {
+        align: 'end',
+        anchor: 'end'
+      }
     }],
   },
   options: {
     tooltips: {
       enabled: false
+    },
+    hover: {
+      mode: null
     },
     drawBorder: true,
     indexAxis: 'y',
