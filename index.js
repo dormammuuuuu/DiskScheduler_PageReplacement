@@ -107,6 +107,7 @@ var toastOption = {
   delay: 2000
 }
 
+
 function see() {
   for (let i = 0; i < toastList.length; i++) {
     toastList[i].hide();

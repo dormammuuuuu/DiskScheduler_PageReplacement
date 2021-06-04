@@ -1,9 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
 html, body {
   padding: 0;
   margin: 0;
   margin-bottom: 7em;
-  background: linear-gradient(180deg, #13161c,#3f7c8f);
-  color: #ccfeff !important;
+  background-color: #222222 !important;
+  color: white !important;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
 }
 
 #chartContainer {
@@ -56,7 +69,7 @@ input[type=number]:focus, select:active, select:focus {
 }
 
 .jumbotron {
-  background-color: #324552 !important;
+  background-color: #303034 !important;
 }
 
 option {
@@ -131,4 +144,15 @@ header h1{
 
 .link a{
   text-decoration: none;
+}
+
+#header-with-wave {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  padding-top: 5.5em;
+  position: relative;
+  background: #3f7c8f;
+  color: #222222;
 }

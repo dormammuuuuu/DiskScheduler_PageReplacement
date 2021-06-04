@@ -7,7 +7,7 @@ html,body{
   position: absolute;
   width: 100vw;
   height: 100vh;
-  font-family: poppins;
+  font-family: 'Poppins', sans-serif!important;
   background: linear-gradient(180deg, #13161c,#3f7c8f);
   overflow-x: hidden;
 }
