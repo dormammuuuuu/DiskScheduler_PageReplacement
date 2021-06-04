@@ -8,7 +8,7 @@ html,body{
   width: 100vw;
   height: 100vh;
   font-family: poppins;
-  background-color: #13161c;
+  background: linear-gradient(180deg, #13161c,#3f7c8f);
   overflow-x: hidden;
 }
 
@@ -79,8 +79,9 @@ header h1, h3, p{
   margin: auto;
 }
 .cards p{
-  border: 2px solid black;
+  font-size: 1.3em;
   margin: 1em 0;
+  color:#edfffe;
 }
 img{
   width: 15em;
