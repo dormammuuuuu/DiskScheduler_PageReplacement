@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <html>
+
 <head>
-<link rel="stylesheet" href="start.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="start.css">
 </head>
+
 <body>
-<div class="start">
-  <header>
-    <h1>SantosTech</h1>
+  <div class="start">
+    <header>
+      <h1>SantosTech</h1>
       <nav>
-      <ul id="taas">
-        <li><a href="#" class="choice">HOME</a></li>
-        <li><a href="#" class="choice">ALGORITHMS</a></li>
-        <li><a href="about.html" class="choice">ABOUT</a></li>
-      </ul>
+        <ul id="taas">
+          <li><a href="#" class="choice">HOME</a></li>
+          <li><a href="#" class="choice">ALGORITHMS</a></li>
+          <li><a href="about.html" class="choice">ABOUT</a></li>
+        </ul>
       </nav>
-  </header>
-<section>
-  <div class="desc">
-    <h1>OBJECTIVES</h1>
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-       et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+    </header>
+    <section id="desc-container">
+      <div class="desc">
+        <h1>OBJECTIVES</h1>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+      </div>
+      <div id="laptop">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="2.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="3.png" class="d-block w-100" alt="...">
+            </div>
+          </div>
+        </div>
+    </section>
   </div>
-</section>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    var myCarousel = document.querySelector('#myCarousel')
+    var carousel = new bootstrap.Carousel(myCarousel)
+  </script>
 </body>
+
 </html>
