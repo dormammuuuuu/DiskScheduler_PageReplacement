@@ -47,7 +47,10 @@
 
   <script type="text/javascript">
     var myCarousel = document.querySelector('#myCarousel')
-    var carousel = new bootstrap.Carousel(myCarousel)
+    var carousel = new bootstrap.Carousel(myCarousel, {
+      interval: 1500,
+      wrap: false
+    })
   </script>
 </body>
 

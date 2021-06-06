@@ -105,14 +105,13 @@ header h1 {
 }
 
 #myCarousel{
-  width: 80%;
+  width: 100%;
 }
 
 #myCarousel img{
   object-fit: fill;
   border: 24px solid white;
-  border-image: url("computer-laptop.svg") 10% 14% stretch;
-
+  border-image: url("computer-laptop.svg") 5% 14% 10% 14%  stretch;
 }
 /*
 .welcome{
