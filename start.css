@@ -10,7 +10,76 @@ position: absolute;
 background: linear-gradient(180deg, #13161c,#3f7c8f);
 overflow-x: hidden;
 }
+.start{
+  position: relative;
+  z-index: 1;
+  animation: ease-out slideLeftToRight .5s;
+}
 
+@keyframes slideLeftToRight{
+  0%{
+    transform: translate(30%);
+    opacity: 0;
+  }
+  100%{
+    transform: translate(0%);
+    opacity: 1;
+  }
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 2em;
+  margin: 0em 1em;
+}
+
+header h1{
+  font-weight: bolder;
+  background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.choice{
+  font-weight: bolder;
+  font-size: .8em;
+  text-decoration: none;
+  color: #4bb0b3;
+}
+.choice:hover{
+  color: #99e6e8;
+  transition: ease-in .3s;
+}
+
+#taas{
+  list-style: none;
+}
+
+#taas li{
+  font-size: 1.5em;
+  letter-spacing: .2em;
+  display: inline-block;
+  margin: 0 1em;
+}
+
+.desc{
+margin: 0 2em;
+margin-bottom: 5em;
+padding: 0 1em;
+width: 50%;
+}
+
+.desc h1{
+  font-size: 5em;
+  padding-top: .7em;
+}
+.desc p{
+  font-weight: bolder;
+}
+
+/*
 .welcome{
   position: relative;
   z-index: 1;
@@ -46,7 +115,6 @@ margin: 0 1em;
   padding-top: .5em;
   padding-bottom: .5em;
   letter-spacing: 10px;
-  text-transform: uppercase;
   color: #ffffff;
   animation: animate 2.5s ease-in-out infinite alternate;
 }
@@ -84,7 +152,6 @@ margin: 0 1em;
   overflow: hidden;
   margin: 1.5em 1.5em;
   background-color:#d7e9f5;
-  box-shadow: 0 0 35px rgba(0, 0, 0, 1);
 }
 
 .First-Card p, .Second-Card p{
@@ -94,13 +161,6 @@ margin: 0 1em;
   color: #202f40;
 }
 
-
-img{
-  width: 100%;
-  height: 300px;
-  object-fit: fill;
-  object-position: center;
-}
 #start{
   cursor: pointer;
   display: flex;
@@ -120,3 +180,4 @@ img{
   background-color: #8b96a6;
   color: #ccfeff;
 }
+*/
