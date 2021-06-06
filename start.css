@@ -96,18 +96,12 @@ header h1 {
 }
 
 #laptop {
-  background-image: url(computer-laptop.svg);
-  background-position: center;
-  background-repeat: no-repeat;
   width: 40%;
   height: 50%;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 #myCarousel{
@@ -115,8 +109,10 @@ header h1 {
 }
 
 #myCarousel img{
-  margin-top: 13px;
-  height: 300px;
+  object-fit: fill;
+  border: 24px solid white;
+  border-image: url("computer-laptop.svg") 10% 14% stretch;
+
 }
 /*
 .welcome{
