@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
 
 html, body {
   padding: 0;
@@ -10,12 +11,21 @@ html, body {
   background: linear-gradient(180deg, #13161c, #3f7c8f);
   overflow-x: hidden;
   color: #e0e0e0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 
-.start {
-  position: relative;
-  z-index: 1;
+body{
   animation: ease-out slideLeftToRight .5s;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
 }
 
 @keyframes slideLeftToRight {
@@ -30,19 +40,23 @@ html, body {
   }
 }
 
-header {
+.navbar{
+  position: absolute!important;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0em 2em;
   margin: 0em 1em;
   height: 91px;
-  position: absolute;
   width: 100vw;
   z-index: 2;
 }
 
-header h1 {
+.brand{
+  width: max-content;
   font-weight: bolder;
   font-size: 33px;
   background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
@@ -50,15 +64,17 @@ header h1 {
   -webkit-background-clip: text;
 }
 
-.choice {
-  font-weight: bolder;
-  font-size: .8em;
-  text-decoration: none;
-  color: #4bb0b3;
+.bg-light{
+  background-color: transparent!important;
 }
 
-.choice:hover {
-  color: #99e6e8;
+.nav-link{
+  font-weight: bolder;
+  margin: 0 30px;
+  font-size: 1.2em!important;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: #4bb0b3!important;
   transition: ease-in .3s;
 }
 
@@ -74,6 +90,8 @@ header h1 {
 }
 
 #desc-container {
+  position: absolute;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -81,18 +99,27 @@ header h1 {
 }
 
 .desc {
+  display: flex;
+  flex-direction: column;
   margin: 0 2em;
   padding: 0 1em;
   width: 50%;
 }
 
 .desc h1 {
-  font-size: 5em;
+  font-family: 'Unica one', sans-serif;
+  font-size: 5.5em;
   padding-top: .7em;
+  margin-bottom: 0;
+  letter-spacing: .1em;
+  color: #ddddda;
 }
 
 .desc p {
+  text-align: justify;
+  text-justify: inter-word;
   font-weight: bolder;
+  color: #ddddda;
 }
 
 #laptop {
@@ -112,6 +139,44 @@ header h1 {
   object-fit: fill;
   border: 24px solid white;
   border-image: url("../res/computer-laptop.svg") 5% 14% 10% 14% stretch;
+}
+
+.with-circle{
+  padding: .5em .7em;
+  border: 2px solid #3f7c8f;
+  border-radius: 2em;
+}
+
+@media (max-width: 999px) {
+  nav{
+    margin: 0;
+    min-height: 91px;
+    height: max-content;
+  }
+
+  .navbar{
+    background-color: rgba(0,0,0,.5)!important;
+    position: relative!important;
+  }
+
+  #desc-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .desc {
+    width: 90%;
+    text-align: center;
+  }
+
+  #laptop {
+    display: block;
+    width: 50%;
+    height: 300px!important;
+    margin-top: 91px;
+  }
 }
 
 /*

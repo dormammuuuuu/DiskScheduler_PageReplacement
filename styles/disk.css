@@ -173,10 +173,11 @@ option:disabled {
   font-size: .8em;
   text-decoration: none;
   color: #222222;
+  transition: ease-in .3s;
 }
+
 .choice:hover{
   color: #99e6e8;
-  transition: ease-in .3s;
 }
 
 #taas{
