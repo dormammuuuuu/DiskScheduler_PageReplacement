@@ -3,19 +3,24 @@
 html, body {
   padding: 0;
   margin: 0;
-  background: linear-gradient(180deg, #222222,#222222,#3f7c8f);
+  background: linear-gradient(180deg, #222222, #222222, #3f7c8f);
   color: white !important;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
 }
 
 ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
+
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+  background: #FF0000;
 }
 
 #chartContainer {
@@ -32,7 +37,6 @@ html, body {
   text-align: center;
   font-weight: bold;
 }
-
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -103,7 +107,7 @@ option:disabled {
   margin-top: 2rem;
 }
 
-#addButton:hover{
+#addButton:hover {
   background-color: #26aed4;
   transition: ease-in .5s
 }
@@ -128,7 +132,7 @@ option:disabled {
   border: transparent !important;
 }
 
-.wave{
+.wave {
   font-family: 'Poppins', sans-serif;
   font-size: 1em;
   margin: 0;
@@ -136,18 +140,22 @@ option:disabled {
   padding-top: 3em;
   background: #3f7c8f;
   color: #222222;
+  margin-bottom: 5em;
 }
-.wave h2{
+
+.wave h2 {
   text-align: center;
   font-size: 4em;
   color: #99e6e8;
 }
-.wave p{
-  text-align:center;
+
+.wave p {
+  text-align: center;
   color: #99e6e8;
   margin: 0 1em;
 }
-#header-with-wave{
+
+#header-with-wave {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -156,13 +164,13 @@ option:disabled {
   font-family: poppins;
 }
 
-#header-with-wave h1{
+#header-with-wave h1 {
   background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
 
-.choice{
+.choice {
   font-weight: bolder;
   font-size: .8em;
   text-decoration: none;
@@ -170,15 +178,15 @@ option:disabled {
   transition: ease-in .3s;
 }
 
-.choice:hover{
+.choice:hover {
   color: #99e6e8;
 }
 
-#taas{
+#taas {
   list-style: none;
 }
 
-#taas li{
+#taas li {
   font-size: 1.5em;
   letter-spacing: .2em;
   display: inline-block;
