@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+.navbar{
+  position: relative!important;
+}
+
+.navbar-index{
+  position: absolute!important;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 2em;
+  margin: 0em 1em;
+  height: 91px;
+  width: 100vw;
+  z-index: 2;
+}
+
+.brand{
+  width: max-content;
+  font-weight: bolder;
+  font-size: 33px;
+  background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.bg-dark{
+  background-color: transparent!important;
+}
+
+.dropdown-bg{
+  background-color: #13161c!important;
+}
+
+.dropdown-menu{
+  border: 1px solid rgba(63, 124, 143,.5);
+}
+
+.dropdown-item{
+  color: #3f7c8f;
+}
+
+.nav-link{
+  font-weight: bolder;
+  margin: 0 30px;
+  font-size: 1.2em!important;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: #4bb0b3!important;
+  transition: ease-in .3s;
+}
+
+.disk-nav{
+  color: #222222!important;
+}
+
+@media (max-width: 999px) {
+  nav{
+    margin: 0;
+    min-height: 91px;
+    height: max-content;
+  }
+
+  .navbar{
+    background-color: rgba(0,0,0,.2)!important;
+    position: relative!important;
+  }
+}

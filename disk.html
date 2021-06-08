@@ -3,23 +3,44 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="styles/disk.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/disk.css">
+
+  <link rel="stylesheet" href="styles/navbar.css">
+
 </head>
 
 <body onload="start_body()">
-  <header id="header-with-wave">
-      <h1>SantosTech</h1>
-        <nav>
-        <ul id="taas">
-          <li><a href="index.html" class="choice">HOME</a></li>
-          <li><a href="#" class="choice">ALGORITHMS</a></li>
-          <li><a href="about.html" class="choice">ABOUT</a></li>
-        </ul>
-        </nav>
-  </header>
+
   <div class="wave">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><h1 class="brand">SantosTech</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="navbar-nav me-auto mb-2 mb-lg-0"> </div>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link disk-nav" href="index.html">HOME</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link disk-nav dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ALGORITHMS
+              </a>
+              <ul class="dropdown-menu dropdown-bg" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="page.html">Page Replacement</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disk-nav" href="about.html">ABOUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <h2>Disk Scheduler</h2>
     <p>Disk scheduling is done by operating systems to schedule I/O requests arriving for the disk. It is also known as I/O scheduling.</p>
     <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="myID" d=""/></svg>

@@ -5,10 +5,25 @@ html, body {
   margin: 0;
   background: linear-gradient(180deg, #222222, #222222, #3f7c8f);
   color: white !important;
+  overflow-x: hidden;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
+}
+
+body{
+  animation: ease-out fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -137,13 +152,13 @@ option:disabled {
   font-size: 1em;
   margin: 0;
   padding: 0;
-  padding-top: 3em;
   background: #3f7c8f;
   color: #222222;
   margin-bottom: 5em;
 }
 
 .wave h2 {
+  margin-top: .7em;
   text-align: center;
   font-size: 4em;
   color: #99e6e8;
