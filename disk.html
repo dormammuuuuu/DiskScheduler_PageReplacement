@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles/disk.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body onload="start_body()">
+  <header id="header-with-wave">
+    <div>
+      <h1>Disk Scheduler</h1>
+      <p>Disk scheduling is done by operating systems to schedule I/O requests arriving for the disk. It is also known as I/O scheduling.</p>
+      <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="myID" d=""/></svg>
+    </div>
+  </header>
+
+  <section class="container">
+    <form id="disk-menu" class="jumbotron" onsubmit="addData(this)">
+      <div class="form-group">
+        <label class="mr-sm-2" for="disk-algorithms">Disk Scheduling Algorithm</label>
+        <select onchange="numTracks(this)" class="custom-select" id="disk-algorithms" required>
+          <option selected disabled>Select a disk scheduling algorithm...</option>
+          <option value="sstf">Shortest Seek Time First (SSTF)</option>
+          <option value="look">LOOK</option>
+        </select>
+        <div class="form-div">
+          <div>
+            <label class="mr-sm-2 block-paragraph">Number of Tracks</label>
+            <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="5" name="tracks" id="track_five" autocomplete="off">
+            <label class="btn btn-outline-success" for="track_five">5</label>
+
+            <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="6" name="tracks" id="track_six" autocomplete="off">
+            <label class="btn btn-outline-success" for="track_six">6</label>
+
+            <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="7" name="tracks" id="track_seven" autocomplete="off">
+            <label class="btn btn-outline-success" for="track_seven">7</label>
+          </div>
+          <div>
+            <label class="mr-sm-2 block-paragraph">Direction</label>
+            <input type="radio" class="btn-check" onchange="track_direction(this)" disabled="disabled" name="direction" value="t_low" id="option1" autocomplete="off">
+            <label class="btn btn-outline-success" for="option1">Towards 0</label>
+
+            <input type="radio" class="btn-check" onchange="track_direction(this)" disabled="disabled" name="direction" value="t_high" id="option2" autocomplete="off">
+            <label class="btn btn-outline-success" for="option2">Towards 200</label>
+          </div>
+        </div>
+
+        <div class="form-div">
+          <div id="head-position">
+            <label class="mr-sm-2 block-paragraph">Head position</strong></label>
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+          </div>
+          <div id="disk-input">
+            <label class="mr-sm-2 block-paragraph">Tracks <strong>(Min: 0; Max: 200)</strong></label>
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+            <input class="form-control" type="number" name="track-input" min="0" max="200" maxlength="3" disabled="disabled" onfocus="clearInput(this)" oninput="lengthInput(this)">
+          </div>
+        </div>
+        <input type="submit" class="btn btn-outline-primary form-btn-margin" value="ADD" id="addButton" onclick="addData()">
+        <button type="button" class="btn btn-outline-danger form-btn-margin" id="resetButton" data-bs-toggle="modal" data-bs-target="#exampleModal">RESET</button>
+
+      </div>
+    </form>
+    <p id="seekTime"></p>
+  </section>
+  <section id="chartContainer">
+    <canvas id="lineChart"></canvas>
+  </section>
+
+  <div aria-live="polite" aria-atomic="true" class="fixed-bottom d-flex justify-content-end p-3 align-items-center w-100">
+    <div class="toast align-items-center text-white bg-danger border-0 " role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex justify-content-around">
+        <div class="toast-body">
+          There is something wrong with your input</br>
+          Take note of the following:</br></br>
+          - Inputs <strong>can't be NULL</strong></br>
+          - Inputs <strong>can't be repeated</strong></br>
+          - Inputs <strong>can't be less than 0</strong></br>
+          - Inputs <strong>can't be greater than 200</strong>
+        </div>
+        <button type="button" class="btn-close btn-close-white margin-anjo" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <div aria-live="polite" aria-atomic="true" class="fixed-bottom d-flex justify-content-end p-3 align-items-center w-100">
+    <div class="toast align-items-center text-white bg-success border-0 " role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex justify-content-between">
+        <div class="toast-body">
+          Success!
+        </div>
+        <button type="button" class="btn-close btn-close-white margin-anjo" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reset</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure want to go ahead with the reset?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" onclick="resetData()">RESET</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0-rc.1/chartjs-plugin-datalabels.min.js"></script>
+  <script>
+    document.getElementById('disk-menu').addEventListener("submit", function(event) {
+      event.preventDefault();
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="js/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/wavify.js"></script>
+  <script src="js/jquery.wavify.js"></script>
+  <script>
+    var myWave = $('#myID').wavify({
+      container: "#header-with-wave",
+      height: 20,
+      bones: 4,
+      amplitude: 40,
+      color: '#222222',
+      speed: .15,
+      timing: 0
+    });
+  </script>
+</body>
+
+</html>
