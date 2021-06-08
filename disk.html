@@ -3,19 +3,26 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="styles/disk.css">
+  <link rel="stylesheet" href="index.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body onload="start_body()">
   <header id="header-with-wave">
-    <div>
-      <h1>Disk Scheduler</h1>
-      <p>Disk scheduling is done by operating systems to schedule I/O requests arriving for the disk. It is also known as I/O scheduling.</p>
-      <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="myID" d=""/></svg>
-    </div>
+      <h1>SantosTech</h1>
+        <nav>
+        <ul id="taas">
+          <li><a href="algo.html" class="choice">ALGORITHMS</a></li>
+          <li><a href="about.html" class="choice">ABOUT</a></li>
+        </ul>
+        </nav>
   </header>
+  <div class="wave">
+    <h2>Disk Scheduler</h2>
+    <p>Disk scheduling is done by operating systems to schedule I/O requests arriving for the disk. It is also known as I/O scheduling.</p>
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="myID" d=""/></svg>
+  </div>
 
   <section class="container">
     <form id="disk-menu" class="jumbotron" onsubmit="addData(this)">
@@ -30,21 +37,21 @@
           <div>
             <label class="mr-sm-2 block-paragraph">Number of Tracks</label>
             <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="5" name="tracks" id="track_five" autocomplete="off">
-            <label class="btn btn-outline-success" for="track_five">5</label>
+            <label class="btn btn-outline-primary" for="track_five">5</label>
 
             <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="6" name="tracks" id="track_six" autocomplete="off">
-            <label class="btn btn-outline-success" for="track_six">6</label>
+            <label class="btn btn-outline-primary" for="track_six">6</label>
 
             <input type="radio" class="btn-check" onchange="track_controller(this)" disabled="disabled" value="7" name="tracks" id="track_seven" autocomplete="off">
-            <label class="btn btn-outline-success" for="track_seven">7</label>
+            <label class="btn btn-outline-primary" for="track_seven">7</label>
           </div>
           <div>
             <label class="mr-sm-2 block-paragraph">Direction</label>
             <input type="radio" class="btn-check" onchange="track_direction(this)" disabled="disabled" name="direction" value="t_low" id="option1" autocomplete="off">
-            <label class="btn btn-outline-success" for="option1">Towards 0</label>
+            <label class="btn btn-outline-primary" for="option1">Towards 0</label>
 
             <input type="radio" class="btn-check" onchange="track_direction(this)" disabled="disabled" name="direction" value="t_high" id="option2" autocomplete="off">
-            <label class="btn btn-outline-success" for="option2">Towards 200</label>
+            <label class="btn btn-outline-primary" for="option2">Towards 200</label>
           </div>
         </div>
 
@@ -130,18 +137,17 @@
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-  <script src="js/index.js"></script>
+  <script src="index.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="js/wavify.js"></script>
-  <script src="js/jquery.wavify.js"></script>
+  <script src="wavify.js"></script>
+  <script src="jquery.wavify.js"></script>
   <script>
     var myWave = $('#myID').wavify({
-      container: "#header-with-wave",
       height: 20,
       bones: 4,
       amplitude: 40,
       color: '#222222',
-      speed: .15,
+      speed: 0.15,
       timing: 0
     });
   </script>
