@@ -3,8 +3,7 @@
 html, body {
   padding: 0;
   margin: 0;
-  margin-bottom: 7em;
-  background-color: #222222 !important;
+  background: linear-gradient(180deg, #222222,#222222,#3f7c8f);
   color: white !important;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -21,6 +20,7 @@ html, body {
 
 #chartContainer {
   margin: auto;
+  padding-bottom: 5.7em;
   width: 75%;
 }
 
@@ -33,6 +33,7 @@ html, body {
   font-weight: bold;
 }
 
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -44,7 +45,7 @@ input[type=number] {
   display: inline;
   text-align: center;
   background-color: transparent !important;
-  border: 1px solid #28a745;
+  border: 1px solid #007dfa;
   color: inherit !important;
 }
 
@@ -53,7 +54,7 @@ input[type=number]:disabled {
 }
 
 input[type=number]:focus, select:active, select:focus {
-  border-color: #28a745;
+  border-color:#26aed4;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 4px rgba(126, 239, 104, 0.6);
   outline: 0 none;
 }
@@ -88,6 +89,7 @@ option:disabled {
 
 .mr-sm-2 {
   margin-right: 0 !important;
+  color: #9adde3;
 }
 
 .btn {
@@ -105,6 +107,11 @@ option:disabled {
 
 .form-btn-margin {
   margin-top: 2rem;
+}
+
+#addButton:hover{
+  background-color: #26aed4;
+  transition: ease-in .5s
 }
 
 .margin-anjo {
@@ -127,32 +134,58 @@ option:disabled {
   border: transparent !important;
 }
 
-header{
-  display: flex;
-  padding: .5em 10%;
-  text-align: center;
-}
-header h1{
-  font-size: 4em;
-  letter-spacing: .1em;
-}
-
-.links li{
-  display: inline-block;
-  padding: 0 .9em;
-}
-
-.link a{
-  text-decoration: none;
-}
-
-#header-with-wave {
+.wave{
   font-family: 'Poppins', sans-serif;
   font-size: 1em;
   margin: 0;
   padding: 0;
-  padding-top: 5.5em;
-  position: relative;
+  padding-top: 3em;
   background: #3f7c8f;
   color: #222222;
+}
+.wave h2{
+  text-align: center;
+  font-size: 4em;
+  color: #99e6e8;
+}
+.wave p{
+  text-align:center;
+  color: #99e6e8;
+  margin: 0 1em;
+}
+#header-with-wave{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  background: #3f7c8f;
+  font-family: poppins;
+}
+
+#header-with-wave h1{
+  background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.choice{
+  font-weight: bolder;
+  font-size: .8em;
+  text-decoration: none;
+  color: #222222;
+}
+.choice:hover{
+  color: #99e6e8;
+  transition: ease-in .3s;
+}
+
+#taas{
+  list-style: none;
+}
+
+#taas li{
+  font-size: 1.5em;
+  letter-spacing: .2em;
+  display: inline-block;
+  margin: 0 1em;
 }
