@@ -1,0 +1,113 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif !important;
+    background: linear-gradient(180deg, #13161c, #3f7c8f);
+    overflow-x: hidden;
+  }
+
+  .about {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    animation: ease-out slideLeftToRight .5s;
+  }
+
+  @keyframes slideLeftToRight {
+    0% {
+      transform: translate(30%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translate(0%);
+      opacity: 1;
+    }
+  }
+
+  .about {
+    display: block;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0em 2em;
+    margin: 0em 1em;
+  }
+
+  header h1 {
+    font-weight: bolder;
+    background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+
+  #taas {
+    list-style: none;
+  }
+
+  #taas li {
+    font-size: 1.5em;
+    letter-spacing: .2em;
+    display: inline-block;
+    margin: 0 1em;
+  }
+
+  .choice {
+    font-weight: bolder;
+    font-size: .8em;
+    text-decoration: none;
+    color: #4bb0b3;
+  }
+
+  .choice:hover {
+    color: #99e6e8;
+    transition: ease-in .3s;
+  }
+
+  .dev {
+    color: #4bb0b3;
+    font-family: unica one;
+    font-size: 3em;
+    letter-spacing: .4em;
+    position: flex;
+    text-align: center;
+    box-shadow: 0 0 10px #99e6e8;
+  }
+
+  #lahat {
+    display: flex;
+    margin: 2em 2em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cards {
+    text-align: center;
+    margin: auto;
+  }
+
+  .cards p {
+    font-size: 1.3em;
+    margin: 1em 0;
+    color: #edfffe;
+  }
+
+  img {
+    width: 15em;
+    height: 15em;
+    object-fit: fill;
+    object-position: center;
+    border-radius: 50%;
+  }
