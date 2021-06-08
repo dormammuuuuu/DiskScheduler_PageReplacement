@@ -64,8 +64,20 @@ nav {
   -webkit-background-clip: text;
 }
 
-.bg-light{
+.bg-dark{
   background-color: transparent!important;
+}
+
+.dropdown-bg{
+  background-color: #13161c!important;
+}
+
+.dropdown-menu{
+  border: 1px solid rgba(63, 124, 143,.5);
+}
+
+.dropdown-item{
+  color: #3f7c8f;
 }
 
 .nav-link{
