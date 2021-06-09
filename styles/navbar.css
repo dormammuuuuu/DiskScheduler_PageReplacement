@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&display=swap');
 
 .navbar{
   position: relative!important;
@@ -20,13 +21,26 @@ nav {
   z-index: 2;
 }
 
-.brand{
+.brand, .brand-algo{
   width: max-content;
-  font-weight: bolder;
-  font-size: 33px;
-  background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
-  -webkit-text-fill-color: transparent;
+  font-size: 30px;
+  padding: 7px 10px;
+  -webkit-text-fill-color: #e0e0e0;
   -webkit-background-clip: text;
+  display: inline-flex;
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.brand-algo{
+  -webkit-text-fill-color: #222222;
+}
+
+#navbar-logo{
+  filter: invert(85%) sepia(5%) saturate(6%) hue-rotate(61deg) brightness(600%) contrast(89%);
+}
+
+#navbar-logo-algo{
+  filter: invert(85%) sepia(36%) saturate(21%) hue-rotate(338deg) brightness(50%) contrast(89%);
 }
 
 .bg-dark{
