@@ -241,6 +241,7 @@ function addData() {
     }
     data.update();
     document.getElementById('seekTime').innerHTML = "Total Seek time = <strong>" + seekTime + "</strong>";
+    document.getElementById("seekTime").scrollIntoView();
     see();
   }
 }

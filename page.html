@@ -5,15 +5,41 @@
   <link rel="stylesheet" href="styles/page.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/navbar.css">
 </head>
 <body onload="start_body()">
-  <header id="header-with-wave">
-    <div>
-      <h1>Page Replacement Algorithm</h1>
-      <p>In an operating system that uses paging for memory management, a page replacement algorithm is needed to decide which page needs to be replaced when new page comes in</p>
-      <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="myID" d=""/></svg>
-    </div>
-  </header>
+  <div class="wave">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><h1 class="brand">SantosTech</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="navbar-nav me-auto mb-2 mb-lg-0"> </div>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link disk-nav" href="index.html">HOME</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link disk-nav dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ALGORITHMS
+              </a>
+              <ul class="dropdown-menu dropdown-bg" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="disk.html">Disk Scheduler</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disk-nav" href="about.html">ABOUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <h2>Page Replacement</h2>
+    <p>In an operating system that uses paging for memory management, a page replacement algorithm is needed to decide which page needs to be replaced when new page comes in</p>
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="myID" d=""/></svg>
+  </div>
 
   <section class="container">
     <form id="frame-menu" class="jumbotron" onsubmit="addData(this)">
@@ -28,24 +54,24 @@
           <div>
             <label class="mr-sm-2 block-paragraph">Number of Frame</label>
             <input type="radio" class="btn-check" onchange="frame_controller(this)" disabled="disabled" value="4" name="frames" id="frame_four" autocomplete="off">
-            <label class="btn btn-outline-success" for="frame_four">4</label>
+            <label class="btn btn-outline-primary" for="frame_four">4</label>
             <input type="radio" class="btn-check" onchange="frame_controller(this)" disabled="disabled" value="5" name="frames" id="frame_five" autocomplete="off">
-            <label class="btn btn-outline-success" for="frame_five">5</label>
+            <label class="btn btn-outline-primary" for="frame_five">5</label>
             <input type="radio" class="btn-check" onchange="frame_controller(this)" disabled="disabled" value="6" name="frames" id="frame_six" autocomplete="off">
-            <label class="btn btn-outline-success" for="frame_six">6</label>
+            <label class="btn btn-outline-primary" for="frame_six">6</label>
           </div>
           <div>
             <label class="mr-sm-2 block-paragraph">Number of Page References</label>
             <input type="radio" class="btn-check" onchange="page_controller(this)" disabled="disabled" value="6" name="pages" id="page_six" autocomplete="off">
-            <label class="btn btn-outline-success" for="page_six">6</label>
+            <label class="btn btn-outline-primary" for="page_six">6</label>
             <input type="radio" class="btn-check" onchange="page_controller(this)" disabled="disabled" value="7" name="pages" id="page_seven" autocomplete="off">
-            <label class="btn btn-outline-success" for="page_seven">7</label>
+            <label class="btn btn-outline-primary" for="page_seven">7</label>
             <input type="radio" class="btn-check" onchange="page_controller(this)" disabled="disabled" value="8" name="pages" id="page_eight" autocomplete="off">
-            <label class="btn btn-outline-success" for="page_eight">8</label>
+            <label class="btn btn-outline-primary" for="page_eight">8</label>
             <input type="radio" class="btn-check" onchange="page_controller(this)" disabled="disabled" value="9" name="pages" id="page_nine" autocomplete="off">
-            <label class="btn btn-outline-success" for="page_nine">9</label>
+            <label class="btn btn-outline-primary" for="page_nine">9</label>
             <input type="radio" class="btn-check" onchange="page_controller(this)" disabled="disabled" value="10" name="pages" id="page_ten" autocomplete="off">
-            <label class="btn btn-outline-success" for="page_ten">10</label>
+            <label class="btn btn-outline-primary" for="page_ten">10</label>
           </div>
           </div>
           <div class="form-div">
@@ -120,8 +146,7 @@
   <script src="js/jquery.wavify.js"></script>
   <script>
     var myWave = $('#myID').wavify({
-      container: "#header-with-wave",
-      height: 20,
+      height: 50,
       bones: 4,
       amplitude: 40,
       color: '#222222',

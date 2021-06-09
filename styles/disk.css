@@ -147,29 +147,6 @@ option:disabled {
   border: transparent !important;
 }
 
-.wave {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1em;
-  margin: 0;
-  padding: 0;
-  background: #3f7c8f;
-  color: #222222;
-  margin-bottom: 5em;
-}
-
-.wave h2 {
-  margin-top: .7em;
-  text-align: center;
-  font-size: 4em;
-  color: #99e6e8;
-}
-
-.wave p {
-  text-align: center;
-  color: #99e6e8;
-  margin: 0 1em;
-}
-
 #header-with-wave {
   display: flex;
   justify-content: space-between;

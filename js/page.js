@@ -227,6 +227,7 @@ function addData() {
     for (let j = 0; j < pageValues.length; j++) {
       document.getElementById("table-fault").rows[0].cells[j].innerHTML = faults[j];
     }
+    document.getElementById("table-section").scrollIntoView();
   }
 }
 

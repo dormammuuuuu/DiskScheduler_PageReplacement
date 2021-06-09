@@ -3,11 +3,26 @@
 html, body{
   padding: 0;
   margin: 0;
-  margin-bottom: 7em;
-  background-color: #222222!important;
+  background: linear-gradient(180deg, #222222, #222222, #3f7c8f);
   color: #E8EAED!important;
+  overflow-x:hidden;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+body{
+  padding-bottom: 7em;
+  animation: ease-out fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -44,18 +59,12 @@ input[type=text] {
   display: inline;
   text-align: center;
   background-color: transparent!important;
-  border: 1px solid #28a745;
+  border: 1px solid #007dfa;
   color: inherit!important;
 }
 
 input[type=text]:disabled {
   opacity: .5;
-}
-
-input[type=text]:focus, select:active, select:focus {
-  border-color: #28a745;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 4px rgba(126, 239, 104, 0.6);
-  outline: 0 none;
 }
 
 .custom-select {
