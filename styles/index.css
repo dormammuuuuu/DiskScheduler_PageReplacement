@@ -100,7 +100,7 @@ body{
 #myCarousel img {
   object-fit: fill;
   border: 24px solid white;
-  border-image: url("../res/computer-laptop.svg") 5% 14% 10% 14% stretch;
+  border-image: url("../res/computer-laptop.svg") 2% 14% 10% 14% stretch;
 }
 
 .with-circle{
