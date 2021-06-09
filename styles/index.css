@@ -109,11 +109,6 @@ body{
   border-radius: 2em;
 }
 
-#wave-index{
-  height: 100vw;
-  width: 100vh;
-}
-
 @media (max-width: 999px) {
   #desc-container {
     position: absolute;
