@@ -10,14 +10,12 @@ html, body {
   font-family: 'Poppins', sans-serif !important;
   background: linear-gradient(180deg, #13161c, #3f7c8f);
   overflow-x: hidden;
+  color: #e0e0e0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 
-.about {
-  position: relative;
-  z-index: 1;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+body{
   animation: ease-out slideLeftToRight .5s;
 }
 
@@ -32,53 +30,22 @@ html, body {
     opacity: 1;
   }
 }
-
-.about {
-  display: block;
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
 }
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0em 2em;
-  margin: 0em 1em;
-}
-
-header h1 {
-  font-weight: bolder;
-  background: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #ffffff);
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-}
-
-#taas {
-  list-style: none;
-}
-
-#taas li {
-  font-size: 1.5em;
-  letter-spacing: .2em;
-  display: inline-block;
-  margin: 0 1em;
-}
-
-.choice {
-  font-weight: bolder;
-  font-size: .8em;
-  text-decoration: none;
-  color: #4bb0b3;
-}
-
-.choice:hover {
-  color: #99e6e8;
-  transition: ease-in .3s;
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
 }
 
 .dev {
+  border: 2px solid black;
   color: #4bb0b3;
   font-family: unica one;
   font-size: 3em;
+  margin: 1em 0;
+  padding: 1em 0;
   letter-spacing: .4em;
   position: flex;
   text-align: center;
@@ -86,8 +53,9 @@ header h1 {
 }
 
 #lahat {
+  border: 2px solid black;
   display: flex;
-  margin: 2em 2em;
+  margin-bottom: 2em;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -104,7 +72,7 @@ header h1 {
   color: #edfffe;
 }
 
-img {
+.pic{
   width: 15em;
   height: 15em;
   object-fit: fill;
