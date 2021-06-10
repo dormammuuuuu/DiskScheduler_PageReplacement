@@ -3,51 +3,73 @@
 <html>
 
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/about.css">
+  <link rel="stylesheet" href="styles/navbar.css">
 </head>
 
 <body>
-  <div class="about">
-    <header>
-      <h1>SantosTech</h1>
-      <nav>
-        <ul id="taas">
-          <li><a href="index.html" class="choice">HOME</a></li>
-          <li><a href="#" class="choice">ALGORITHMS</a></li>
-        </ul>
-      </nav>
-    </header>
+  <nav class="navbar navbar-index navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex" href="#">
+        <img src="res/logo.png" id="navbar-logo" alt="" width="48" height="48" class="d-inline-block align-text-top">
+        <h1 class="brand">SantosTech</h1>
+      </a>
 
-    <div class="dev">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="navbar-nav me-auto mb-2 mb-lg-0"> </div>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ALGORITHMS
+            </a>
+            <ul class="dropdown-menu dropdown-bg" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="disk.html">Disk Scheduler</a></li>
+              <li><a class="dropdown-item" href="page.html">Page Replacement</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">HOME</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dev">
       <h1> DEVELOPERS</h1>
     </div>
 
     <section id="lahat">
       <div class="cards">
-        <img src="https://dormammuuuuu.github.io/images/santos_tech/jerico.jpg">
+        <img src="https://dormammuuuuu.github.io/images/santos_tech/jerico.jpg" class="pic">
         <p>Jerico Victoria</p>
         <p>Lead Programmer</p>
       </div>
 
       <div class="cards">
-        <img src="https://dormammuuuuu.github.io/images/santos_tech/raymond.png">
+        <img src="https://dormammuuuuu.github.io/images/santos_tech/raymond.png"class="pic">
         <p>Raymond Matullano</p>
         <p>Programmer</p>
       </div>
 
       <div class="cards">
-        <img src="https://dormammuuuuu.github.io/images/santos_tech/ramino.jpg">
+        <img src="https://dormammuuuuu.github.io/images/santos_tech/ramino.jpg"class="pic">
         <p>Ramino Jake Santos</p>
         <p>Programmer</p>
       </div>
 
       <div class="cards">
-        <img src="https://dormammuuuuu.github.io/images/santos_tech/francis.png">
+        <img src="https://dormammuuuuu.github.io/images/santos_tech/francis.png"class="pic">
         <p>Francis Edian Panaligan</p>
         <p>Programmer</p>
       </div>
 
     </section>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </div>
 </body>
 
