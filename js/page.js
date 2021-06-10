@@ -6,6 +6,7 @@ var pagesInputField = [];
 var selectedOpts;
 var number_of_frames;
 var validation = true;
+const alphaVal = (s) => s.toLowerCase().charCodeAt(0) - 97 + 1
 
 var toastElList = [].slice.call(document.querySelectorAll('.toast'))
 var toastList = toastElList.map(function(toastEl) {
@@ -92,7 +93,7 @@ function addData() {
 
     if (selectedOpts == "lru") {
       //main algorithm
-      for (let i = 0; i < pageValues.length; ++i) {
+      for (let i = 0; i < page_count; ++i) {
         flag1 = flag2 = false;
 
         for (let j = 0; j < number_of_frames; ++j) {
@@ -122,10 +123,10 @@ function addData() {
 
         if (!flag2) {
           min = time[0];
-          for (let i = 1; i < number_of_frames; ++i) {
-            if (time[i] < min) {
-              min = time[i];
-              pos = i;
+          for (let k = 1; k < number_of_frames; ++k) {
+            if (time[k] < min) {
+              min = time[k];
+              pos = k;
             }
           }
           counter++;
@@ -143,7 +144,7 @@ function addData() {
 
     } else if (selectedOpts == "optimal") {
       for (i = 0; i < pageValues.length; i++) {
-        flag1 = flag2 = 0;
+        flag1 = flag2 = false;
         let page_found = 0;
         for (j = 0; j < number_of_frames; j++) {
           if (memory[j] == pageValues[i]) {
