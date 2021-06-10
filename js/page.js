@@ -75,87 +75,73 @@ function addData() {
       var cell1 = row.insertCell(0);
     }
 
+    let temp = [];
     let memory = [];
+    let time = [];
     let faults = new Array(page_count);
     let page_found = 0;
+    let flag1;
+    let flag2;
+    let flag3;
+    let pos = 0;
+    let max = 0;
+    let min = 0;
+    let fault_count = 0;
+    let hit_count = 0;
+    let counter = 0;
 
     if (selectedOpts == "lru") {
       //main algorithm
-      fault_count = 0;
-      hit_count = 0;
-      for (let i = 0; i < page_count; i++) {
-        // Get Current Requested Page
-        let cur_page = pageValues[i];
-        let page_found = 0;
+      for (let i = 0; i < pageValues.length; ++i) {
+        flag1 = flag2 = false;
 
-        // Look for page in memory
-        for (let j = 0; j < number_of_frames; j++) {
-          if (memory[j] == cur_page) {
-            page_found = 1;
+        for (let j = 0; j < number_of_frames; ++j) {
+          if (memory[j] == pageValues[i]) {
+            faults[i] = "HIT";
+            hit_count++;
+            counter++;
+            time[j] = counter;
+            flag1 = flag2 = true;
             break;
           }
         }
 
-        // If page is not found
-        if (!page_found) {
-          // Increase Fault Count
-          fault_count++;
-          faults[i] = "MISS";
-          // Cached status : to check for any empty slot
-          let is_cached = 0;
-          // <-----------Cache the page --------------->
-          for (let j = 0; j < number_of_frames; j++) {
+        if (!flag1) {
+          for (let j = 0; j < number_of_frames; ++j) {
             if (memory[j] == undefined) {
-              memory[j] = cur_page;
+              counter++;
+              faults[i] = "MISS";
+              fault_count++;
+              memory[j] = pageValues[i];
+              time[j] = counter;
+              flag2 = true;
               break;
             }
           }
-          // If no empty slot is found then remove the LRU page
-          if (!is_cached) {
-            let check_count = 0;
-            let check_status = [];
-            for (let m = 0; m < number_of_frames; m++) {
-              check_status[m] = 0;
-            }
-            for (let cur = i - 1; cur >= 0; cur--) {
-              let val = pageValues[cur];
-              for (let n = 0; n < number_of_frames; n++) {
-                if (val == memory[n]) {
-                  check_status[n] = 1;
-                  check_count++;
-                  break;
-                }
-              }
-              if (check_count == number_of_frames - 1)
-                break;
-            }
-            // Put the page where check status = 0
-            for (let cur = 0; cur < number_of_frames; cur++) {
-              if (check_status[cur] == 0) {
-                memory[cur] = cur_page;
-                break;
-              }
+        }
+
+        if (!flag2) {
+          min = time[0];
+          for (let i = 1; i < number_of_frames; ++i) {
+            if (time[i] < min) {
+              min = time[i];
+              pos = i;
             }
           }
-        } else {
-          faults[i] = "HIT";
-          hit_count++;
+          counter++;
+          faults[i] = "MISS";
+          fault_count++;
+          memory[pos] = pageValues[i];
+          time[pos] = counter;
         }
+
         // Print the current Memory snap
         for (let j = 0; j < memory.length; j++) {
           document.getElementById("main-table").rows[j].cells[i].innerHTML = memory[j];
         }
       }
-    } else if (selectedOpts == "optimal") {
-      fault_count = 0;
-      hit_count = 0;
-      let temp = [];
-      var flag1;
-      var flag2;
-      var flag3;
-      var pos;
-      var max;
 
+    } else if (selectedOpts == "optimal") {
       for (i = 0; i < pageValues.length; i++) {
         flag1 = flag2 = 0;
         let page_found = 0;
