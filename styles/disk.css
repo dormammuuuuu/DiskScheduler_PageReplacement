@@ -64,12 +64,16 @@ input[type=number] {
   display: inline;
   text-align: center;
   background-color: transparent !important;
-  border: 1px solid #ddddda;
+  border: 1px solid #007dfa;
   color: inherit !important;
 }
 
 input[type=number]:disabled {
   opacity: .5;
+}
+
+#disk-algorithms{
+  border: 1px solid #007dfa;
 }
 
 .custom-select {
