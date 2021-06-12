@@ -195,7 +195,6 @@ function addData() {
     } else {
 
       headValue = trackValues.shift();
-      trackValues.sort((a, b) => a - b); // For descending sort
       trackValues.unshift(headValue);
 
       let sstfSet = [];
