@@ -209,6 +209,7 @@ function addData() {
 
     document.getElementById("fault-label").innerHTML = "Total Page Faults: " + fault_count;
     document.getElementById("hit-label").innerHTML = "Total Page Hits: " + hit_count;
+    document.getElementById("ratio-label").innerHTML = "Page Fault Ratio: " + fault_count + ":" + page_count;
     for (let j = 0; j < pageValues.length; j++) {
       document.getElementById("table-string").rows[0].cells[j].innerHTML = pageValues[j];
     }
@@ -258,6 +259,10 @@ function createTable() {
 
   var label = document.createElement("h6");
   label.setAttribute("id", "hit-label");
+  tableContainer.appendChild(label);
+
+  var label = document.createElement("h6");
+  label.setAttribute("id", "ratio-label");
   tableContainer.appendChild(label);
 }
 

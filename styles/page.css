@@ -160,9 +160,9 @@ th, td {
   height: 40px;
 }
 
-#fault-label, #hit-label{
+#fault-label, #hit-label, #ratio-label{
   text-align: center;
-  margin: 1em;
+  margin: .7em;
 }
 
 #table-string{
