@@ -123,6 +123,7 @@ function addData() {
 
         if (!flag2) {
           min = time[0];
+          pos = 0;
           for (let k = 1; k < number_of_frames; ++k) {
             if (time[k] < min) {
               min = time[k];
