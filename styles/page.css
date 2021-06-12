@@ -160,9 +160,27 @@ th, td {
   height: 40px;
 }
 
-#fault-label, #hit-label, #ratio-label{
+#fault-label, #hit-label, #fault-ratio-label, #hit-ratio-label, #algo-label{
   text-align: center;
   margin: .7em;
+}
+
+#algo-label{
+  margin-bottom: .7em;
+}
+
+#cont2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: auto;
+  margin-top: .7em;
+}
+
+#lbl-container{
+  margin-bottom: .7em;
+  display: flex;
+  flex-direction: column;
 }
 
 #table-string{

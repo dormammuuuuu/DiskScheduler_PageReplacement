@@ -6,6 +6,7 @@ var pagesInputField = [];
 var selectedOpts;
 var number_of_frames;
 var validation = true;
+var algoName;
 const alphaVal = (s) => s.toLowerCase().charCodeAt(0) - 97 + 1
 
 var toastElList = [].slice.call(document.querySelectorAll('.toast'))
@@ -93,6 +94,7 @@ function addData() {
 
     if (selectedOpts == "lru") {
       //main algorithm
+      algoName = "Least Recently Used";
       for (let i = 0; i < page_count; ++i) {
         flag1 = flag2 = false;
 
@@ -144,6 +146,7 @@ function addData() {
       }
 
     } else if (selectedOpts == "optimal") {
+      algoName = "Optimal Page Replacement";
       for (i = 0; i < pageValues.length; i++) {
         flag1 = flag2 = false;
         let page_found = 0;
@@ -207,9 +210,14 @@ function addData() {
       }
     }
 
+    document.getElementById("algo-label").innerHTML = "Algorithm: " + algoName;
     document.getElementById("fault-label").innerHTML = "Total Page Faults: " + fault_count;
     document.getElementById("hit-label").innerHTML = "Total Page Hits: " + hit_count;
-    document.getElementById("ratio-label").innerHTML = "Page Fault Ratio: " + fault_count + ":" + page_count;
+    let h_percentage = (hit_count / page_count) * 100;
+    let f_percentage = (fault_count / page_count) * 100;
+    document.getElementById("fault-ratio-label").innerHTML = "Page Fault Ratio: " + fault_count + ":" + page_count + " (" + f_percentage.toFixed(2) + "%)";
+    document.getElementById("hit-ratio-label").innerHTML = "Page Hit Ratio: " + hit_count + ":" + page_count + " (" + h_percentage.toFixed(2) + "%)";
+
     for (let j = 0; j < pageValues.length; j++) {
       document.getElementById("table-string").rows[0].cells[j].innerHTML = pageValues[j];
     }
@@ -235,6 +243,10 @@ function createTable() {
 
   let tableContainer = document.getElementById("table-container");
 
+  var labelContainers = document.createElement("div");
+  labelContainers.setAttribute("id", "lbl-container");
+  tableContainer.appendChild(labelContainers);
+
   var tableString = document.createElement("TABLE");
   tableString.setAttribute("id", "table-string");
   tableString.setAttribute("align", "center");
@@ -253,17 +265,41 @@ function createTable() {
   tableFault.setAttribute("width", "80%");
   tableContainer.appendChild(tableFault);
 
+  var div_f = document.createElement("div");
+  div_f.setAttribute("id", "cont1");
+  labelContainers.appendChild(div_f);
+
+  var div_s = document.createElement("div");
+  div_s.setAttribute("id", "cont2");
+  tableContainer.appendChild(div_s);
+
+  var label = document.createElement("h6");
+  label.setAttribute("id", "algo-label");
+  div_f.appendChild(label);
+
+  var faultsContainer = document.createElement("div");
+  faultsContainer.setAttribute("id", "faults-container");
+  div_s.appendChild(faultsContainer);
+
+  var hitContainer = document.createElement("div");
+  hitContainer.setAttribute("id", "hit-container");
+  div_s.appendChild(hitContainer);
+
   var label = document.createElement("h6");
   label.setAttribute("id", "fault-label");
-  tableContainer.appendChild(label);
+  faultsContainer.appendChild(label);
 
   var label = document.createElement("h6");
   label.setAttribute("id", "hit-label");
-  tableContainer.appendChild(label);
+  hitContainer.appendChild(label);
 
   var label = document.createElement("h6");
-  label.setAttribute("id", "ratio-label");
-  tableContainer.appendChild(label);
+  label.setAttribute("id", "fault-ratio-label");
+  faultsContainer.appendChild(label);
+
+  var label = document.createElement("h6");
+  label.setAttribute("id", "hit-ratio-label");
+  hitContainer.appendChild(label);
 }
 
 function removeData() {
