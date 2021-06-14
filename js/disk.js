@@ -1,6 +1,4 @@
 var ctx = document.getElementById('lineChart');
-var addNum;
-var addLabel = "edi wow";
 var track_count;
 var resetButton, addButton;
 var tracksInputField = [];

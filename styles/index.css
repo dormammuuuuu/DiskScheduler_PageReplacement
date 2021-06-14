@@ -8,7 +8,6 @@ html, body {
   width: 100vw;
   font-family: Poppins;
   position: absolute;
-  background: linear-gradient(180deg, #13161c, #3f7c8f);
   overflow-x: hidden;
   color: #e0e0e0;
   scrollbar-width: none; /* Firefox */
@@ -16,6 +15,7 @@ html, body {
 }
 
 body{
+  background: linear-gradient(180deg, #13161c, #3f7c8f);
   animation: ease-out slideLeftToRight .5s;
 }
 
@@ -66,13 +66,17 @@ body{
   margin: 0 2em;
   padding: 0 1em;
   width: 40%;
+  position: relative;
+  left: -10%;
+  opacity: 0;
 }
 
 .desc h1 {
   font-family: 'Unica one', sans-serif;
-  font-size: 5.5em;
+  font-size: 4.5em;
   padding-top: .7em;
-  margin-bottom: 0;
+  padding-bottom: .3em;
+  margin: 0;
   letter-spacing: .1em;
   color: #ddddda;
 }
@@ -82,15 +86,20 @@ body{
   text-justify: inter-word;
   font-weight: bolder;
   color: #ddddda;
+  letter-spacing: 1px;
 }
 
 #laptop {
+  padding-top: .7em;
   width: 40%;
   height: 50%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  left: 10%;
+  opacity: 0;
 }
 
 #myCarousel {
