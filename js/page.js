@@ -1,5 +1,3 @@
-var addNum;
-var addLabel = "edi wow";
 var page_count;
 var resetButton, addButton;
 var pagesInputField = [];
@@ -7,7 +5,6 @@ var selectedOpts;
 var number_of_frames;
 var validation = true;
 var algoName;
-const alphaVal = (s) => s.toLowerCase().charCodeAt(0) - 97 + 1
 
 var toastElList = [].slice.call(document.querySelectorAll('.toast'))
 var toastList = toastElList.map(function(toastEl) {
