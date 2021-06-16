@@ -10,22 +10,27 @@ html, body {
   position: absolute;
   overflow-x: hidden;
   color: #e0e0e0;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
 }
 
-body{
+body {
   background: linear-gradient(180deg, #13161c, #3f7c8f);
   animation: ease-out slideLeftToRight .5s;
 }
 
 ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
+
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+  background: #FF0000;
 }
 
 @keyframes slideLeftToRight {
@@ -112,7 +117,7 @@ body{
   border-image: url("../res/computer-laptop.svg") 2% 14% 10% 14% stretch;
 }
 
-.with-circle{
+.with-circle {
   padding: .5em .7em;
   border: 2px solid #3f7c8f;
   border-radius: 2em;
@@ -134,110 +139,7 @@ body{
   #laptop {
     display: block;
     width: 50%;
-    height: 300px!important;
+    height: 300px !important;
     margin-top: 91px;
   }
 }
-
-/*
-.welcome{
-position: relative;
-z-index: 1;
-width: 100vw;
-height: 100vh;
-display: flex;
-animation: ease-out slideLeftToRight .5s;
-}
-
-@keyframes slideLeftToRight{
-0%{
-  transform: translate(30%);
-  opacity: 0;
-}
-100%{
-  transform: translate(0%);
-  opacity: 1;
-}
-}
-
-.welcome{
-display: block;
-}
-
-.Greetings{
-text-align: center;
-margin: 0 1em;
-}
-
-.Greetings h1{
-font-size: 95px;
-margin: 0 .5em;
-padding-top: .5em;
-padding-bottom: .5em;
-letter-spacing: 10px;
-color: #ffffff;
-animation: animate 2.5s ease-in-out infinite alternate;
-}
-@keyframes animate {
-from{
-  text-shadow: 0 0 5px #00fcf4;
-}
-to{
-  text-shadow: 0 0 25px #73ed2d,
-              0 0 15px #0aceff,
-              0 0 10px #03f8fc;
-}
-}
-
-
-.Greetings p{
-font-weight: bolder;
-font-size: 25px;
-margin: 0 1em;
-color: #96d2e3;
-}
-
-.lahat{
-display: flex;
-flex-direction: row;
-justify-content: center;
-}
-
-.First-Card, .Second-Card{
-border: 2px black;
-overflow: hidden;
-width: 23em;
-border-radius: 1em;
-border-radius: : 1em;
-overflow: hidden;
-margin: 1.5em 1.5em;
-background-color:#d7e9f5;
-}
-
-.First-Card p, .Second-Card p{
-text-align: center;
-font-size: 1.5rem;
-font-weight: bolder;
-color: #202f40;
-}
-
-#start{
-cursor: pointer;
-display: flex;
-justify-content: center;
-color:  #202f40;
-font-weight: bolder;
-letter-spacing: 1em;
-text-decoration: none;
-padding: 20px;
-background-color:#bac3d1;
-overflow: hidden;
-font-weight: bolder;
-transition: ease 1s;
-}
-
-#start:hover{
-background-color: #8b96a6;
-color: #ccfeff;
-}
-*/

@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
 
-html, body{
+html, body {
   padding: 0;
   margin: 0;
   background: linear-gradient(180deg, #222222, #222222, #3f7c8f);
-  color: #E8EAED!important;
-  overflow-x:hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  color: #E8EAED !important;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
 }
 
-body{
+body {
   padding-bottom: 7em;
   animation: ease-out fadeIn 1.5s;
 }
@@ -26,20 +28,23 @@ body{
 }
 
 ::-webkit-scrollbar {
-  width: 0;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
+
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
   background: #FF0000;
 }
 
-#chartContainer{
+#chartContainer {
   margin: auto;
   width: 75%;
 }
 
-#frame-menu{
+#frame-menu {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -58,99 +63,97 @@ input[type=text] {
   width: 3.5rem;
   display: inline;
   text-align: center;
-  background-color: transparent!important;
+  background-color: transparent !important;
   border: 1px solid #007dfa;
-  color: inherit!important;
+  color: inherit !important;
 }
 
 input[type=text]:disabled {
   opacity: .5;
 }
 
-#frame-algorithms{
+#frame-algorithms {
   border: 1px solid #007dfa;
 }
 
 .custom-select {
-  background-color: transparent!important;
+  background-color: transparent !important;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='gray' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") !important;
-  color: #E8EAED!important;
+  color: #E8EAED !important;
 }
 
-#seekTime{
+#seekTime {
   text-align: center;
 }
 
-.jumbotron{
-  background-color: #303030!important;
+.jumbotron {
+  background-color: #303030 !important;
 }
 
-option{
+option {
   background-color: #333333;
   color: white;
 }
 
-option:disabled{
-  color: rgba(255,255,255,.3);
+option:disabled {
+  color: rgba(255, 255, 255, .3);
 }
 
-.block-paragraph{
+.block-paragraph {
   display: block;
   margin-top: 1rem;
 }
 
-.mr-sm-2{
-  margin-right: 0!important;
-
+.mr-sm-2 {
+  margin-right: 0 !important;
 }
 
-.btn{
+.btn {
   margin: .3rem;
 }
 
-.form-group{
+.form-group {
   width: fit-content;
 }
 
-.form-div{
+.form-div {
   display: flex;
   justify-content: space-around;
 }
 
-.form-btn-margin{
+.form-btn-margin {
   margin-top: 2rem;
 }
 
-.margin-anjo{
+.margin-anjo {
   margin: auto 10px;
 }
 
-.toast{
-  width: 360px!important;
+.toast {
+  width: 360px !important;
 }
 
-.modal-content{
-  background-color: #333333!important;
+.modal-content {
+  background-color: #333333 !important;
 }
 
-.btn-close{
+.btn-close {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='gray'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") !important;
 }
 
-.modal-header, .modal-footer{
-  border: transparent!important;
+.modal-header, .modal-footer {
+  border: transparent !important;
 }
 
 table, th, td {
-
   border: 1px solid white;
   text-align: center;
   box-shadow: 0 0 1px #ffffff,
-              0 0 1px #ffffff,
-              0 0 1px #ffffff;
+    0 0 1px #ffffff,
+    0 0 1px #ffffff;
 }
 
-table{
+table {
   table-layout: fixed;
   border-collapse: collapse;
 }
@@ -160,16 +163,16 @@ th, td {
   height: 40px;
 }
 
-#fault-label, #hit-label, #fault-ratio-label, #hit-ratio-label, #algo-label{
+#fault-label, #hit-label, #fault-ratio-label, #hit-ratio-label, #algo-label {
   text-align: center;
   margin: .7em;
 }
 
-#algo-label{
+#algo-label {
   margin-bottom: .7em;
 }
 
-#cont2{
+#cont2 {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -177,26 +180,27 @@ th, td {
   margin-top: .7em;
 }
 
-#lbl-container{
+#lbl-container {
   margin-bottom: .7em;
   display: flex;
   flex-direction: column;
 }
 
-#table-string{
+#table-string {
   margin-bottom: .7em;
 }
 
-#table-fault{
+#table-fault {
   margin-top: .7em;
 }
 
-header{
+header {
   display: flex;
   padding: .5em 10%;
   text-align: center;
 }
-header h1{
+
+header h1 {
   font-size: 4em;
   letter-spacing: .1em;
 }
