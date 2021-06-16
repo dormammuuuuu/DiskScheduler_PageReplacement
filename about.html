@@ -39,37 +39,56 @@
     </div>
   </nav>
 
-  <div class="dev">
-      <h1> DEVELOPERS</h1>
-    </div>
+<div class="dev">
+      <h1>DEVELOPERS</h1>
+</div>
 
     <section id="lahat">
       <div class="cards">
         <img src="https://dormammuuuuu.github.io/images/santos_tech/jerico.jpg" class="pic">
-        <p>Jerico Victoria</p>
-        <p>Lead Programmer</p>
+        <div class="description">
+        <h1>Jerico Victoria</h1>
+        <p>-The lead programmer of this project who program the Disk Scheduler Algorithm, The one who is incharge of every decision of the project, </p>
+      </div>
       </div>
 
       <div class="cards">
         <img src="https://dormammuuuuu.github.io/images/santos_tech/raymond.png"class="pic">
-        <p>Raymond Matullano</p>
-        <p>Programmer</p>
+        <div class="description">
+        <h1>Raymond Matullano</h1>
+        <p>-One of the programmer and The one who is incharge in documentation of the project</p>
+      </div>
       </div>
 
       <div class="cards">
         <img src="https://dormammuuuuu.github.io/images/santos_tech/ramino.jpg"class="pic">
-        <p>Ramino Jake Santos</p>
-        <p>Programmer</p>
+        <div class="description">
+        <h1>Ramino Jake Santos</h1>
+        <p>-One of the programmer who is incharge in programming of the Page Replacement Algorithm</p>
+      </div>
       </div>
 
       <div class="cards">
         <img src="https://dormammuuuuu.github.io/images/santos_tech/francis.png"class="pic">
-        <p>Francis Edian Panaligan</p>
-        <p>Programmer</p>
+        <div class="description">
+        <h1>Francis Edian Panaligan</h1>
+        <p>-One of the programmer who is incharge in the Front-End of the project</p>
+      </div>
       </div>
 
     </section>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+      <script>
+        $(document).ready(function() {
+          $(".navbar-about").delay(300).animate({opacity: "1"}, "slow");
+          $(".dev").delay(800).animate({left: "0", opacity: "1"}, "slow");
+          $("#lahat").delay(950).animate({left: "0", opacity: "1"}, "slow");
+        });
+      </script>
+
+
   </div>
 </body>
 
